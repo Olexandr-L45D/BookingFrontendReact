@@ -1,0 +1,48 @@
+
+{
+  "navigation": {
+    "home": "Home",
+    "contacts": "Contacts",
+    "login": "Login",
+    "register": "Register",
+    "titleContactbook": "Contactbook"
+    
+  },
+  "register": {
+   "titleRegistr": "RegistrationForm"
+  },
+  "login": {
+   "titleLogin": "LOGIN FORM"
+  },
+  "auth": {
+    "finde": "Finde contact by name",
+    "welcome": "Welcome",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Submit",
+    "logout": "Logout",
+    "titleContactbook": "Contactbook",
+    "btnLog": "Log In"
+  },
+  "contacts": {
+    "added": "Add contact",
+    "name": "Name",
+    "number": "Number",
+    "labelName": "Name",
+    "labelPhone": "Phone",
+    "namePlaceholder": "Enter name...",
+    "numberPlaceholder": "Enter number...",
+    "delete": "Delete",
+    "addedNotification": "You added a contact.",
+    "deleteNotification": "You Delete a contact!",
+    "titleCard": "Your Contact Card",
+    "titleContactbook": "Contactbook",
+    "titleWelcom": "Welcom in my contact card",
+    "create": "Create Account"
+  },
+  "loader": {
+    "shortTextMessage": "Text must be longer than 3 characters"
+  }
+}
+
+

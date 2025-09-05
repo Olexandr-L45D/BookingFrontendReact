@@ -1,0 +1,44 @@
+{
+  "navigation": {
+    "home": "Головна",
+    "contacts": "Контакти",
+    "login": "Увійти",
+    "register": "Реєстрація",
+    "titleContactbook": "Книга контактів"
+    
+  },
+  "register": {
+   "titleRegistr": "Форма регістрації"
+  },
+  "login": {
+   "titleLogin": "ФОРМА ЛОГІНУ"
+  },
+  "auth": {
+    "finde": "Знайди контакт за ім'ям",
+    "welcome": "Ласкаво просимо до застосунку",
+    "username": "Ім'я користувача",
+    "password": "Пароль",
+    "submit": "Надіслати",
+    "logout": "Вийти",
+    "titleContactbook": "Книга контактів",
+    "btnLog": "Увійти"
+  },
+  "contacts": {
+    "added": "Додати контакт",
+    "name": "Ім'я",
+    "number": "Номер",
+    "labelName": "Ім'я",
+    "labelPhone": "Телефон",
+    "namePlaceholder": "Введіть ім'я...",
+    "numberPlaceholder": "Введіть номер...",
+    "delete": "Видалити",
+    "deleteNotification": "Ви видалили контакт!",
+    "titleCard": "Ваша книга контактів",
+    "titleContactbook": "Книга контактів",
+    "titleWelcom": "Запрошую до моєї картки контактів",
+    "create": "Створити Аккаунт"
+  },
+  "loader": {
+    "shortTextMessage": "Текст має бути довшим за 3 символи"
+  }
+}

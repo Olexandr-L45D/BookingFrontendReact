@@ -1,0 +1,49 @@
+.item {
+    width: 300px;
+    padding: 2px;
+    margin: 2px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    color: rgb(14, 15, 15);
+    border: 1px solid black;
+    border-color: black;
+    border-radius: 10px;
+}
+
+.itemText {
+    padding: 2px;
+    margin: 2px;
+    height: auto;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: left;
+
+}
+
+.text {
+    padding: 2px;
+    margin: 2px;
+    color: black;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.btn {
+    padding: 3px;
+    margin: 2px;
+    margin-right: 4px;
+    height: auto;
+    width: 90px;
+    text-align: center;
+    align-items: center;
+    color: rgb(14, 15, 15);
+    border: 1px solid black;
+    border-color: black;
+    border-radius: 5px;
+}

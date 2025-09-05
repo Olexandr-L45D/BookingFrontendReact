@@ -1,0 +1,47 @@
+/*style Navigation */
+
+.nav {
+    display: flex;
+}
+
+.logo {
+    font-weight: 700;
+    margin: 0;
+}
+
+.link {
+    padding: 8px 16px;
+    margin: 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+.link:hover {
+    color: #ffffff;
+}
+
+a:focus {
+    color: #ffffff;
+}
+
+.link:focus {
+    color: #ffffff;
+}
+
+.active {
+    color: white;
+    background-color: rgb(255, 0, 242);
+}
+
+.container {
+    display: flex;
+    text-align: left;
+    justify-content: left;
+    align-items: left;
+}
