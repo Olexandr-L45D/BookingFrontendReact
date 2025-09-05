@@ -19,7 +19,7 @@ export default function ContactsPage() {
   }, [dispatch]);
 
   return (
-    <div className={css.cartPage}>
+    <div className={css.container}>
       <h1 className={css.cartTitle}>{t("contacts.titleCard")}</h1>
       <ContactForm />
       <div>{isLoading && "Request in progress..."}</div>

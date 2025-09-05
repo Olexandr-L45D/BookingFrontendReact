@@ -1,81 +1,116 @@
-.cartPage {
-    /* width: 1400px; */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+.container {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  max-height: 780px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; /* щоб працювало justify/align */
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(230, 255, 240);
+  /* background-color: rgb(255, 250, 230);  */
+  /* background-color: rgb(245, 240, 255);  */
+}
+@media (min-width: 339px) {
+  .container {
+    max-width: 370px;
+    max-height: 850px;
+  }
+}
+/* 💻 планшети горизонтально / маленькі ноутбуки */
+@media (min-width: 768px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+/* 🖥️ стандартні десктопи */
+@media (min-width: 1023px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* 🖥️ великі десктопи */
+@media (min-width: 1279px) {
+  .container {
+    max-width: 1440px;
+  }
 }
 
 .list {
-    margin: 2px;
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+  margin: 2px;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .item {
-    width: 250px;
-    list-style: none;
-    margin: 5px;
-    padding: 5px;
+  width: 250px;
+  list-style: none;
+  margin: 5px;
+  padding: 5px;
 }
 
 @media screen and (min-width: 768px) {
-    .list {
-        padding: 0px;
-        margin: 0px;
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        color: rgb(19, 20, 20);
-    }
+  .list {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    color: rgb(19, 20, 20);
+  }
 
-    .item {
-        margin-left: 20px;
-        padding-left: 40px;
-        width: 250px;
-        list-style: none;
-        width: calc((100% - 8px) / 2);
-    }
+  .item {
+    margin-left: 20px;
+    padding-left: 40px;
+    width: 250px;
+    list-style: none;
+    width: calc((100% - 8px) / 2);
+  }
 }
 
-
 @media screen and (min-width: 1200px) {
-    .list {
-        gap: 10px;
-    }
+  .list {
+    gap: 10px;
+  }
 
-    .item {
-        margin-left: 20px;
-        padding-left: 50px;
-        width: 250px;
-        list-style: none;
-        width: calc((100% - 10px) / 3);
-    }
+  .item {
+    margin-left: 20px;
+    padding-left: 50px;
+    width: 250px;
+    list-style: none;
+    width: calc((100% - 10px) / 3);
+  }
 }
 
 @media screen and (min-width: 1440px) {
-    .list {
-        margin: 5px;
-        padding: 5px;
-        gap: 16px;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
+  .list {
+    margin: 5px;
+    padding: 5px;
+    gap: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 
-    .item {
-        margin: 5px;
-        padding: 5px;
-        width: 250px;
-        list-style: none;
-        width: calc((100% - 16px) / 5);
-    }
+  .item {
+    margin: 5px;
+    padding: 5px;
+    width: 250px;
+    list-style: none;
+    width: calc((100% - 16px) / 5);
+  }
 }

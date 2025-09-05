@@ -14,7 +14,7 @@ export default function HomePage() {
           {t("auth.titleContactbook")}
           <FcBusinessman className={css.cartIcon} />
         </h1>
-        <h1 className={css.cartText}>{t("contacts.titleWelcom")}</h1>
+        <h2 className={css.cartText}>{t("contacts.titleWelcom")}</h2>
       </div>
     </div>
   );

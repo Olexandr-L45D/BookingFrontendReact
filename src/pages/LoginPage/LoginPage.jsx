@@ -9,7 +9,7 @@ export default function LoginPage() {
   }
   return (
     <main>
-      <div className={css.cartPage}>
+      <div className={css.container}>
         <h1 className={css.cartTitle}>{t("login.titleLogin")}</h1>
         <LoginForm />
       </div>

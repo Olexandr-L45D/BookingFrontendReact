@@ -9,7 +9,7 @@ export default function RegistrationPage() {
   }
   return (
     <main>
-      <div className={css.cartPage}>
+      <div className={css.container}>
         <h3 className={css.cartForm}>{t("register.titleRegistr")}</h3>
         <RegistrationForm />
       </div>

@@ -1,14 +1,16 @@
 /* UserMenu */
 .wrapper {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 1px;
+  padding: 1px;
 }
 
 .username {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .button {
-    margin: 10px;
+  margin: 10px;
 }

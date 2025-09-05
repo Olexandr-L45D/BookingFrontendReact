@@ -5,13 +5,12 @@
     "login": "Увійти",
     "register": "Реєстрація",
     "titleContactbook": "Книга контактів"
-    
   },
   "register": {
-   "titleRegistr": "Форма регістрації"
+    "titleRegistr": "Форма регістрації"
   },
   "login": {
-   "titleLogin": "ФОРМА ЛОГІНУ"
+    "titleLogin": "ФОРМА ЛОГІНУ"
   },
   "auth": {
     "finde": "Знайди контакт за ім'ям",
@@ -20,7 +19,7 @@
     "password": "Пароль",
     "submit": "Надіслати",
     "logout": "Вийти",
-    "titleContactbook": "Книга контактів",
+    "titleContactbook": "Сервіс бронюваняя",
     "btnLog": "Увійти"
   },
   "contacts": {
@@ -35,7 +34,7 @@
     "deleteNotification": "Ви видалили контакт!",
     "titleCard": "Ваша книга контактів",
     "titleContactbook": "Книга контактів",
-    "titleWelcom": "Запрошую до моєї картки контактів",
+    "titleWelcom": "Якщо ви хочете забронювати зустрічь зарегеструйтесь або авторизуйтесь",
     "create": "Створити Аккаунт"
   },
   "loader": {

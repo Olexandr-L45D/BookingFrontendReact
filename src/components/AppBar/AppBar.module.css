@@ -1,36 +1,84 @@
 /* style AppBar.module.css */
-
 .header {
-    width: 100%;
-    height: 50px;
-    margin-left: 10px;
-    margin-right: 10px;
-    background-color: rgb(0, 110, 255);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-    margin-bottom: 16px;
-    border-bottom: 1px solid #2a363b;
+  position: fixed;
+  top: 0;
+  left: 50%; /* ставимо відносно центру */
+  transform: translateX(-50%); /* відсуваємо назад на половину ширини */
+  width: 100%;
+  max-width: 340px; /* або будь-яка твоя ширина */
+  height: auto;
+  background-color: rgb(0, 110, 255);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* ✅ дозволяємо перенос */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  border-bottom: 1px solid #2a363b;
+  z-index: 1000;
 }
 
 .languageSwitcher {
+  display: flex;
+  gap: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-left: auto; /* завжди тримається справа */
+}
+
+@media (min-width: 339px) {
+  .header {
+    max-width: 370px;
+  }
+}
+/* 💻 планшети горизонтально / маленькі ноутбуки */
+@media (min-width: 768px) {
+  .header {
+    /* height: 50px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* ✅ розтягує по ширині */
+    align-items: center; /* ✅ по вертикалі вирівнює */
+    text-align: center;
+    max-width: 1024px;
+    gap: 12px;
+    padding: 0 16px; /* трохи відступів з боків */
+    margin: 0 auto; /* центрує сам хедер */
+  }
+  .languageSwitcher {
     display: flex;
     gap: 10px;
-    margin-left: auto;
+    margin-right: 10px;
+    /* margin-bottom: 10px; */
+    margin-left: auto; /* завжди тримається справа */
+  }
+}
+
+/* 🖥️ стандартні десктопи */
+@media (min-width: 1023px) {
+  .header {
+    max-width: 1280px;
+  }
+}
+
+/* 🖥️ великі десктопи */
+@media (min-width: 1279px) {
+  .header {
+    max-width: 1440px;
+  }
 }
 
 .languageSwitcher button {
-    background: none;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+  background: none;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .languageSwitcher button:hover {
-    background-color: #f0f0f0;
-    border-color: #888;
+  background-color: #f0f0f0;
+  border-color: #888;
 }
