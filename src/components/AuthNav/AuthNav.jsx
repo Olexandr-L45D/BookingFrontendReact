@@ -23,13 +23,3 @@ export const AuthNav = () => {
     </div>
   );
 };
-
-// const { t } = useTranslation();
-// return (
-//   <nav>
-//     <NavLink to="/">{t("navigation.home")}</NavLink>
-//     <NavLink to="/contacts">{t("navigation.contacts")}</NavLink>
-//     <NavLink to="/login">{t("navigation.login")}</NavLink>
-//     <NavLink to="/register">{t("navigation.register")}</NavLink>
-//   </nav>
-// );

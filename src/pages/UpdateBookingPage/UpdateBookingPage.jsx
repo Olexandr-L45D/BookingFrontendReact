@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 
-import css from "./BookingPage.module.css";
-import BookingForm from "../../components/BookingForm/BookingForm";
+import css from "./UpdateBookingPage.module.css";
+import UpdateBookingForm from "../../components/UpdateBookingForm/UpdateBookingForm";
 
-export default function BookingPage() {
+export default function UpdateBookingPage() {
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
@@ -13,12 +13,10 @@ export default function BookingPage() {
       <div className={css.container}>
         <h3 className={css.cartForm}>
           {t("register.titleRegistr")}
-          Create a reservation
+          Update reservation
         </h3>
-        <BookingForm />
+        <UpdateBookingForm />
       </div>
     </main>
   );
 }
-
-//  BookingPage

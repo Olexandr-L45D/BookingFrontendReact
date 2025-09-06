@@ -14,22 +14,22 @@ export const BookingNav = () => {
   }
   return (
     <div className={css.blokLink}>
-      <NavLink className={newLinkClass} to="/">
+      <NavLink className={newLinkClass} to="/booking">
         {/* {t("navigation.register")} */}
         create a reservation
       </NavLink>
-      <NavLink className={newLinkClass} to="/me">
+      <NavLink className={newLinkClass} to="/booking/me">
         {/* {t("navigation.login")} */}
         my reservations
       </NavLink>
-      <NavLink className={newLinkClass} to="/:id">
-        {/* {t("navigation.register")} */}
-        del reservation
+
+      {/* <NavLink className={newLinkClass} to="/:id">
+        dellete reservation
       </NavLink>
       <NavLink className={newLinkClass} to="/:id/cancel">
-        {/* {t("navigation.login")} */}
         cancel reservation
-      </NavLink>
+      </NavLink> */}
+
       <NavLink className={newLinkClass} to="/:id/update">
         {/* {t("navigation.login")} */}
         update reservation

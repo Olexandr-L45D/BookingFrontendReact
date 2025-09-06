@@ -7,6 +7,7 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { useTranslation } from "react-i18next";
 import { setLanguage } from "../../redux/sliceLanguage";
 import { fetchContact } from "../../redux/contacts/operations";
+import { BookingNav } from "../BookingNav/BookingNav";
 
 export const AppBar = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,8 @@ export const AppBar = () => {
     <header className={css.header}>
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
-      {/* {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
+      {isLoggedIn && <BookingNav />}
+      {/* {isLoggedIn ? <UserMenu /> : <BookingNav />} */}
       <div className={css.languageSwitcher}>
         <button onClick={() => changeLanguage("en")}>EN</button>
         <button onClick={() => changeLanguage("uk")}>UA</button>

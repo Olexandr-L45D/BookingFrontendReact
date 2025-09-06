@@ -9,10 +9,18 @@ const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const RegistrationPage = lazy(() =>
   import("../../pages/RegistrationPage/RegistrationPage")
 );
+
 const ContactsPage = lazy(() =>
   import("../../pages/ContactsPage/ContactsPage")
 );
-const BookingPage = lazy(() => import("../../pages/ContactsPage/ContactsPage"));
+const BookingPage = lazy(() => import("../../pages/BookingPage/BookingPage"));
+
+const AllReservationsPage = lazy(() =>
+  import("../../pages/AllReservationsPage/AllReservationsPage")
+);
+const UpdateBookingPage = lazy(() =>
+  import("../../pages/UpdateBookingPage/UpdateBookingPage")
+);
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
 
 import { Layout } from "../Layout/Layout";
@@ -66,6 +74,24 @@ export default function App() {
               <PrivateRoute redirectTo="/login" component={<BookingPage />} />
             }
           />
+          <Route
+            path="/booking/me"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<AllReservationsPage />}
+              />
+            }
+          />
+          <Route
+            path="/:id/update"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<UpdateBookingPage />}
+              />
+            }
+          />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
@@ -73,3 +99,5 @@ export default function App() {
     </Layout>
   );
 }
+
+//  UpdateBookingPage

@@ -1,4 +1,5 @@
-import css from "./Contact.module.css";
+// BookingContact
+import css from "./BookingContact.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillPhone } from "react-icons/ai";
 import { useDispatch } from "react-redux";
@@ -6,13 +7,13 @@ import { deleteContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-export default function Contact({ contact }) {
+export default function BookingContact({ contact }) {
   const dispatch = useDispatch();
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
   }
-  const notify = () => toast.success(t("contacts.deleteNotification")); // Викликаємо тост із перекладеним текстом
+  const notify = () => toast.success("reservation deleted"); // Викликаємо тост із перекладеним текстом
 
   const handleDelete = () => {
     dispatch(deleteContact(contact.id)); // Видаляємо контакт
@@ -38,20 +39,3 @@ export default function Contact({ contact }) {
     </div>
   );
 }
-
-// Delete міняю на динамічне значення для перекладу
-// const MyComponent = () => {
-//     // 2. Отримуємо посилання на функцію відправки екшенів
-//     const dispatch = useDispatch();
-//     // 3. Функція селектор стану (належить слайсу тому що отримує частинку слайсу)
-//     const items = useSelector(deleteContact);
-// };
-
-// export default function Contact({ obj: { id, name, number }, onDelete }) - old Exemple!
-
-// {
-//   "name": "Dima Prod",
-//   "phoneNumber": "222-33-115",
-//   "email": "Dima_Doe123@gmail.com",
-//   "role": "business"
-// }

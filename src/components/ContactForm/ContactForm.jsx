@@ -63,3 +63,25 @@ export default function ContactForm() {
     </div>
   );
 }
+
+// {
+//   "name": "Dima Prod",
+//   "phoneNumber": "222-33-115",
+//   "email": "Dima_Doe123@gmail.com",
+//   "role": "business"
+// }
+// // відповідь при створенні контакта
+// {
+//   "status": 201,
+//   "message": "Successfully created a contact!",
+//   "contact": {
+//     "name": "Dima Prod",
+//     "phoneNumber": "222-33-115",
+//     "email": "Dima_Doe123@gmail.com",
+//     "role": "business",
+//     "userId": "68bc381901e47c5f0665b865",
+//     "_id": "68bc6b9f2f071eae4ff81caa",
+//     "createdAt": "2025-09-06T17:13:03.377Z",
+//     "updatedAt": "2025-09-06T17:13:03.377Z"
+//   }
+// }
