@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense } from "react";
 import { useEffect } from "react";
+// BookingPage
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
@@ -11,6 +12,7 @@ const RegistrationPage = lazy(() =>
 const ContactsPage = lazy(() =>
   import("../../pages/ContactsPage/ContactsPage")
 );
+const BookingPage = lazy(() => import("../../pages/ContactsPage/ContactsPage"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
 
 import { Layout } from "../Layout/Layout";
@@ -58,6 +60,13 @@ export default function App() {
               <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
             }
           />
+          <Route
+            path="/booking"
+            element={
+              <PrivateRoute redirectTo="/login" component={<BookingPage />} />
+            }
+          />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

@@ -25,6 +25,7 @@ export const AppBar = () => {
     <header className={css.header}>
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      {/* {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
       <div className={css.languageSwitcher}>
         <button onClick={() => changeLanguage("en")}>EN</button>
         <button onClick={() => changeLanguage("uk")}>UA</button>

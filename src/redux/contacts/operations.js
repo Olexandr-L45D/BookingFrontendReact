@@ -2,7 +2,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://connections-api.goit.global/";
+axios.defaults.baseURL = "https://bookingbackendnode.onrender.com";
 
 const translateText = async (text, targetLanguage) => {
   if (!text || text.trim() === "") {
@@ -44,68 +44,6 @@ const translateText = async (text, targetLanguage) => {
     return text;
   }
 };
-
-// Функція для перекладу тексту (з підтримкою обробки помилок)
-// const translateText = async (text, targetLanguage) => {
-//   try {
-//     const response = await fetch("https://libretranslate.com/translate", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         q: text,
-//         source: "auto",
-//         target: targetLanguage,
-//         format: "text",
-//         api_key: "YOUR_API_KEY", // Тут вставте реальний ключ
-//       }),
-//     });
-
-//     const data = await response.json();
-//     return data.translatedText;
-//   } catch (error) {
-//     console.error("Translation API error:", error);
-//     return null;
-//   }
-// };
-
-// const translateText = async (text, targetLanguage) => {
-//   if (!text || text.trim() === "") {
-//     console.warn("Немає тексту для перекладу");
-//     return text; // Повертаємо вихідний текст, щоб уникнути помилки
-//   }
-
-//   try {
-//     const response = await fetch(
-//       `https://lingva.ml/api/v1/translate/en/${targetLanguage}/${encodeURIComponent(
-//         text
-//       )}`,
-//       {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({
-//           q: text,
-//           source: "en",
-//           target: targetLanguage,
-//           format: "text",
-//         }),
-//       }
-//     );
-
-//     const data = await response.json();
-
-//     if (!data || !data.translatedText) {
-//       console.error("Помилка перекладу: некоректні дані від API", data);
-//       return text;
-//     }
-
-//     return data.translatedText;
-//   } catch (error) {
-//     console.error("Помилка запиту:", error);
-//     return text;
-//   }
-// };
 
 // Функція для отримання контактів з бекенду і перекладу їх
 export const fetchContact = createAsyncThunk(
