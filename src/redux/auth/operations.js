@@ -20,6 +20,9 @@ export const register = createAsyncThunk(
     try {
       const response = await axios.post("/auth/register", credentials);
       // After successful registration, add the token to the HTTP header
+      // після отримання data при login/register
+      localStorage.setItem("token", response.data.token);
+
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -38,6 +41,7 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post("/auth/login", userInfo);
       // After successful login, add the token to the HTTP header
+      localStorage.setItem("token", data.token);
       setAuthHeader(data.token);
       return data;
     } catch (error) {
@@ -69,19 +73,15 @@ export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+    const token = state.auth.token || localStorage.getItem("token");
+    if (!token) return thunkAPI.rejectWithValue("No token");
 
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("No token");
-    }
-    //  відновлюємо хедер
-    setAuthHeader(persistedToken);
+    setAuthHeader(token);
     try {
-      // якщо на бекенді /auth/current – то міняй тут
-      const { data } = await axios.get("/auth/refresh");
+      const { data } = await axios.get("/auth/refresh"); // або /auth/current
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );

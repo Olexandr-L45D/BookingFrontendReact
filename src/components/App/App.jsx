@@ -26,7 +26,7 @@ const UpdateBookingPage = lazy(() =>
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
 
 import { Layout } from "../Layout/Layout";
-import { refreshUser } from "../../redux/auth/operations";
+import { refreshUser, setAuthHeader } from "../../redux/auth/operations";
 import RestrictedRoute from "../../components/RestrictedRoute";
 import PrivateRoute from "../../components/PrivateRoute";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
@@ -36,7 +36,14 @@ export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
   // запит на ТОКЕН isRefreshing (чи валідний токен?)
   useEffect(() => {
-    dispatch(refreshUser());
+    const token = localStorage.getItem("token");
+    if (token) {
+      setAuthHeader(token); // важливо: встановити хедер одразу
+      // можеш диспатчити refreshUser після встановлення
+      dispatch(refreshUser());
+    } else {
+      // якщо токена немає — refreshUser не має запускатись
+    }
   }, [dispatch]);
 
   return isRefreshing ? (

@@ -54,7 +54,8 @@ export const addContact = createAsyncThunk(
   "contacts/addContact",
   async (newContact, { getState, rejectWithValue }) => {
     try {
-      const token = getState().auth.token;
+      // const token = getState().auth.token;
+      const token = getState().auth.token || localStorage.getItem("token");
       if (!token) return rejectWithValue("No token available");
 
       setAuthHeader(token); // додаємо токен до axios
@@ -68,11 +69,14 @@ export const addContact = createAsyncThunk(
 );
 
 // ---------------------- FETCH ALL CONTACTS ----------------------
+// const token = getState().auth.token || localStorage.getItem('token');
+// цей запис означає беру токен або зі стану в Redax або з локалсторедж
 export const fetchContact = createAsyncThunk(
   "contacts/fetchAll",
   async (_, { getState, rejectWithValue }) => {
     try {
-      const token = getState().auth.token;
+      // const token = getState().auth.token;
+      const token = getState().auth.token || localStorage.getItem("token");
       if (!token) return rejectWithValue("No token available");
 
       setAuthHeader(token); // додаємо токен до axios
