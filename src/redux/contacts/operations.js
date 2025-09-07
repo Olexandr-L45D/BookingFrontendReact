@@ -4,10 +4,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setAuthHeader } from "../auth/operations";
 
 axios.defaults.baseURL = "https://bookingbackendnode.onrender.com";
-// Utility to add JWT - (token)
-// const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
 // Utility to translateText
 const translateText = async (text, targetLanguage) => {
   if (!text || text.trim() === "") {
@@ -49,6 +45,7 @@ const translateText = async (text, targetLanguage) => {
     return text;
   }
 };
+
 // ---------------------- ADD CONTACT ----------------------
 export const addContact = createAsyncThunk(
   "contacts/addContact",

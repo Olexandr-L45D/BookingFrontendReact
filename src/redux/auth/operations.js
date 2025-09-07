@@ -13,42 +13,89 @@ export const setAuthHeader = token => {
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";
 };
-// POST @/auth/register
+
+// ---------------------- REGISTER ----------------------
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post("/auth/register", credentials);
-      // After successful registration, add the token to the HTTP header
-      // після отримання data при login/register
-      localStorage.setItem("token", response.data.token);
+      const accessToken = response.data.data.accessToken;
 
-      setAuthHeader(response.data.token);
-      return response.data;
+      // Зберігаємо токен в localStorage та axios
+      localStorage.setItem("token", accessToken);
+      setAuthHeader(accessToken);
+
+      // Повертаємо у зручному форматі для slice
+      return {
+        user: response.data.data.user || null,
+        token: accessToken,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-/*
- * POST @ /auth/login
- * body: { email, password } = credentials
- */
+// ---------------------- LOGIN ----------------------
 export const logIn = createAsyncThunk(
   "auth/login",
   async (userInfo, thunkAPI) => {
     try {
-      const { data } = await axios.post("/auth/login", userInfo);
-      // After successful login, add the token to the HTTP header
-      localStorage.setItem("token", data.token);
-      setAuthHeader(data.token);
-      return data;
+      const response = await axios.post("/auth/login", userInfo);
+      const accessToken = response.data.data.accessToken;
+
+      // Зберігаємо токен в localStorage та axios
+      localStorage.setItem("token", accessToken);
+      setAuthHeader(accessToken);
+
+      // Повертаємо у зручному форматі для slice
+      return {
+        user: response.data.data.user || null,
+        token: accessToken,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+// // POST @/auth/register
+// export const register = createAsyncThunk(
+//   "auth/register",
+//   async (credentials, thunkAPI) => {
+//     try {
+//       const response = await axios.post("/auth/register", credentials);
+//       // After successful registration, add the token to the HTTP header
+//       // після отримання data при login/register
+//       localStorage.setItem("token", response.data.token);
+
+//       setAuthHeader(response.data.token);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// /*
+//  * POST @ /auth/login
+//  * body: { email, password } = credentials
+//  */
+// export const logIn = createAsyncThunk(
+//   "auth/login",
+//   async (userInfo, thunkAPI) => {
+//     try {
+//       const { data } = await axios.post("/auth/login", userInfo);
+//       // After successful login, add the token to the HTTP header
+//       localStorage.setItem("token", data.token);
+//       setAuthHeader(data.token);
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 /*
  * POST @ /auth/logout
@@ -58,6 +105,8 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/auth/logout");
     // After a successful logout, remove the token from the HTTP header
+    // ✅ При логауті очищаємо токен
+    localStorage.removeItem("token");
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -69,18 +118,46 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
  * headers: Authorization: Bearer token
  */
 // auth/operations.js
+// export const refreshUser = createAsyncThunk(
+//   "auth/refresh",
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const token = state.auth.token || localStorage.getItem("token");
+//     if (!token) return thunkAPI.rejectWithValue("No token");
+
+//     setAuthHeader(token);
+//     try {
+//       const { data } = await axios.get("/auth/refresh"); // або /auth/current
+//       return data;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
+
+// ---------------------- REFRESH USER ----------------------
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token || localStorage.getItem("token");
+
     if (!token) return thunkAPI.rejectWithValue("No token");
 
+    // ✅ Підставляємо accessToken у хедер
     setAuthHeader(token);
+
     try {
-      const { data } = await axios.get("/auth/refresh"); // або /auth/current
-      return data;
+      const { data } = await axios.get("/auth/refresh"); // або "/auth/current", залежно від бекенду
+
+      return {
+        user: data.data?.user || null,
+        token, // залишаємо той самий accessToken
+      };
     } catch (err) {
+      // Якщо токен не валідний — чистимо localStorage
+      localStorage.removeItem("token");
+      clearAuthHeader();
       return thunkAPI.rejectWithValue(err.message);
     }
   }

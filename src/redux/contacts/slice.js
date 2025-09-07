@@ -7,15 +7,16 @@ import { logOut } from "../auth/operations";
 const slice = createSlice({
   name: "contacts",
   initialState: {
-    items: [
-      {
-        id: "1",
-        name: "Olena",
-        number: "380123456789",
-        email: "123Olena@gmail.com ",
-        role: "business",
-      },
-    ],
+    // items: [
+    //   {
+    //     id: "1",
+    //     name: "Olena",
+    //     number: "380123456789",
+    //     email: "123Olena@gmail.com ",
+    //     role: "business",
+    //   },
+    // ],
+    items: [], // важливо, щоб був масив
     loading: false,
     error: null,
   },
