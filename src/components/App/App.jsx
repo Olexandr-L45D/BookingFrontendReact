@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense } from "react";
 import { useEffect } from "react";
-// BookingPage
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
@@ -10,6 +9,9 @@ const RegistrationPage = lazy(() =>
   import("../../pages/RegistrationPage/RegistrationPage")
 );
 
+const CreateContactPage = lazy(() =>
+  import("../../pages/CreateContactPage/CreateContactPage")
+);
 const ContactsPage = lazy(() =>
   import("../../pages/ContactsPage/ContactsPage")
 );
@@ -63,6 +65,15 @@ export default function App() {
             }
           />
           <Route
+            path="/createContact"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<CreateContactPage />}
+              />
+            }
+          />
+          <Route
             path="/contacts"
             element={
               <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
@@ -99,5 +110,3 @@ export default function App() {
     </Layout>
   );
 }
-
-//  UpdateBookingPage

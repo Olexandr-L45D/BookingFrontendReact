@@ -1,106 +1,93 @@
 import css from "./BookingForm.module.css";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ErrorMessage } from "formik";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
 export default function BookingForm() {
-  const { t } = useTranslation();
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    bookingDate: Yup.date()
-      .min(new Date(), "Booking date cannot be in the past")
-      .required("Booking date is required"),
-    comment: Yup.string().max(200, "Comment cannot exceed 200 characters"),
-  });
+  const dispatch = useDispatch();
+  const { t, ready } = useTranslation();
+  if (!ready) {
+    return <div>Loading translations...</div>;
+  }
+  const notify = () => toast.success(t("contacts.addedNotification")); // Викликаємо toast із перекладеним текстом
 
   const handleSubmit = (values, actions) => {
-    toast.success("Booking successful!");
+    dispatch(addContact(values));
     actions.resetForm();
   };
   return (
     <div className={css.item}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000} // 5 seconds
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <Formik
         initialValues={{
-          name: "",
-          email: "",
-          bookingDate: "",
-          comment: "",
+          businessId: " ",
+          date: " ",
+          time: " ",
+          role: " ",
         }}
-        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched }) => (
-          <Form>
-            <Field type="hidden" id="truckId" name="truckId" />
-            <fieldset className={css.formGroup}>
-              <Field
-                className={css.inp}
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Name *"
-              />
-              {errors.name && touched.name && <div>{errors.name}</div>}
-            </fieldset>
+        <Form>
+          <div className={css.items}>
+            <label className={css.label}>BusinessId</label>
+            <Field
+              className={css.inp}
+              type="text"
+              name="businessId"
+              placeholder="Enter businessId..."
+            />
+            <ErrorMessage
+              className={css.messag}
+              name="businessId"
+              component="span"
+            />
+          </div>
+          <div className={css.items}>
+            <label className={css.label}>Date</label>
+            <Field
+              className={css.inp}
+              type="text"
+              name="date"
+              placeholder="Enter date format: 2025-09-07..."
+            />
+            <ErrorMessage className={css.messag} name="date" component="span" />
+          </div>
 
-            <fieldset className={css.formGroup}>
-              <Field
-                className={css.inp}
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email *"
-              />
-              {errors.email && touched.email && <div>{errors.email}</div>}
-            </fieldset>
+          <div className={css.items}>
+            <label className={css.label}>Time</label>
+            <Field
+              className={css.inp}
+              type="text"
+              name="time"
+              placeholder="Enter time..."
+            />
+            <ErrorMessage
+              className={css.messag}
+              name="email"
+              component="span"
+            />
+          </div>
 
-            <fieldset className={css.formGroup}>
-              <Field
-                className={css.inp}
-                type="date"
-                id="bookingDate"
-                name="bookingDate"
-                placeholder="Booking date *"
-              />
-              {errors.bookingDate && touched.bookingDate && (
-                <div>{errors.bookingDate}</div>
-              )}
-            </fieldset>
+          <div className={css.items}>
+            <label className={css.label}>Role</label>
+            <Field
+              className={css.inp}
+              type="name"
+              name="role"
+              placeholder="Enter role..."
+            />
+            <ErrorMessage className={css.messag} name="role" component="span" />
+          </div>
 
-            <fieldset className={css.formGroup}>
-              <Field
-                className={css.inptextarea}
-                as="textarea"
-                id="comment"
-                name="comment"
-                placeholder="Comment *"
-              />
-              {errors.comment && touched.comment && <div>{errors.comment}</div>}
-            </fieldset>
-
-            <section className={css.buttonSend}>
-              <button className={css.btnSend} type="submit">
-                {t("navigation.send")}
-              </button>
-            </section>
-          </Form>
-        )}
+          <div className={css.btn}>
+            <button onClick={notify} className={css.addContact} type="submit">
+              {t("contacts.added")}
+            </button>
+            <Toaster />
+          </div>
+        </Form>
       </Formik>
     </div>
   );

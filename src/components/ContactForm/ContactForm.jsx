@@ -12,7 +12,7 @@ export default function ContactForm() {
   if (!ready) {
     return <div>Loading translations...</div>;
   }
-  const notify = () => toast.success(t("contacts.addedNotification")); // Викликаємо тост із перекладеним текстом
+  const notify = () => toast.success(t("contacts.addedNotification")); // Викликаємо toast із перекладеним текстом
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
@@ -23,7 +23,9 @@ export default function ContactForm() {
       <Formik
         initialValues={{
           name: " ",
-          number: " ",
+          phoneNumber: " ",
+          email: " ",
+          role: " ",
         }}
         onSubmit={handleSubmit}
       >
@@ -43,15 +45,42 @@ export default function ContactForm() {
             <Field
               className={css.inp}
               type="text"
-              name="number"
+              name="phoneNumber"
               placeholder={t("contacts.numberPlaceholder")}
             />
             <ErrorMessage
               className={css.messag}
-              name="number"
+              name="phoneNumber"
               component="span"
             />
           </div>
+
+          <div className={css.items}>
+            <label className={css.label}>Email</label>
+            <Field
+              className={css.inp}
+              type="email"
+              name="email"
+              placeholder="Enter email..."
+            />
+            <ErrorMessage
+              className={css.messag}
+              name="email"
+              component="span"
+            />
+          </div>
+
+          <div className={css.items}>
+            <label className={css.label}>Role</label>
+            <Field
+              className={css.inp}
+              type="name"
+              name="role"
+              placeholder="Enter role..."
+            />
+            <ErrorMessage className={css.messag} name="role" component="span" />
+          </div>
+
           <div className={css.btn}>
             <button onClick={notify} className={css.addContact} type="submit">
               {t("contacts.added")}

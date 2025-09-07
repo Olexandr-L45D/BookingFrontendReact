@@ -1,6 +1,9 @@
 import css from "./Contact.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillPhone } from "react-icons/ai";
+import { AiOutlineHome } from "react-icons/ai";
+import { FcAddressBook } from "react-icons/fc";
+import { FcAbout } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
@@ -29,6 +32,18 @@ export default function Contact({ contact }) {
         <p className={css.text}>
           <AiFillPhone />
           {t("contacts.labelPhone")}: {contact.number}
+        </p>
+        <p className={css.text}>
+          <FcAddressBook />
+          Email: {contact.email}
+        </p>
+        <p className={css.text}>
+          <AiOutlineHome />
+          Role: {contact.role}
+        </p>
+        <p className={css.text}>
+          <FcAbout />
+          Id: {contact.id}
         </p>
       </div>
       <button className={css.btn} onClick={handleDelete}>

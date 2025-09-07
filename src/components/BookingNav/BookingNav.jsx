@@ -16,11 +16,11 @@ export const BookingNav = () => {
     <div className={css.blokLink}>
       <NavLink className={newLinkClass} to="/booking">
         {/* {t("navigation.register")} */}
-        create a reservation
+        Create a reservation
       </NavLink>
       <NavLink className={newLinkClass} to="/booking/me">
         {/* {t("navigation.login")} */}
-        my reservations
+        My reservations
       </NavLink>
 
       {/* <NavLink className={newLinkClass} to="/:id">
@@ -32,7 +32,7 @@ export const BookingNav = () => {
 
       <NavLink className={newLinkClass} to="/:id/update">
         {/* {t("navigation.login")} */}
-        update reservation
+        Update reservation
       </NavLink>
     </div>
   );

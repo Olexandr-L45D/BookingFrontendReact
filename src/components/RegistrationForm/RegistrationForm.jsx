@@ -37,6 +37,7 @@ export default function RegistrationForm() {
               placeholder="Enter name..."
             />
           </div>
+
           <div className={css.items}>
             <label className={css.label}>Email</label>
             <Field
@@ -46,6 +47,7 @@ export default function RegistrationForm() {
               placeholder="Enter email..."
             />
           </div>
+
           <div className={css.items}>
             <label className={css.label}>Password</label>
             <Field

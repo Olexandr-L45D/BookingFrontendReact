@@ -33,7 +33,8 @@
     "delete": "Delete",
     "addedNotification": "You added a contact.",
     "deleteNotification": "You Delete a contact!",
-    "titleCard": "Your Contact Card",
+    "titleCard": "My contact book",
+    "titleContact": "Create contact",
     "titleContactbook": "Contactbook",
     "titleWelcom": "If you want to book an appointment, please register or log in.",
     "create": "Create Account"

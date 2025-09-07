@@ -1,47 +1,48 @@
 /*style Navigation */
 
 .nav {
-    display: flex;
+  display: flex;
 }
 
 .logo {
-    font-weight: 700;
-    margin: 0;
+  font-weight: 700;
+  margin: 0;
 }
 
 .link {
-    padding: 8px 16px;
-    margin: 30px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
+  padding: 6px 10px;
+  margin: 20px;
+  margin-right: 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
 }
 
 a:hover {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .link:hover {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 a:focus {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .link:focus {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .active {
-    color: white;
-    background-color: rgb(255, 0, 242);
+  color: white;
+  background-color: rgb(255, 0, 242);
 }
 
 .container {
-    display: flex;
-    text-align: left;
-    justify-content: left;
-    align-items: left;
+  display: flex;
+  text-align: left;
+  justify-content: left;
+  align-items: left;
 }

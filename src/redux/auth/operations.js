@@ -5,7 +5,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "https://bookingbackendnode.onrender.com";
 
 // Utility to add JWT - (token)
-const setAuthHeader = token => {
+export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -13,7 +13,7 @@ const setAuthHeader = token => {
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";
 };
-// POST @/users/signup
+// POST @/auth/register
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
@@ -29,7 +29,7 @@ export const register = createAsyncThunk(
 );
 
 /*
- * POST @ /users/login
+ * POST @ /auth/login
  * body: { email, password } = credentials
  */
 export const logIn = createAsyncThunk(
@@ -47,7 +47,7 @@ export const logIn = createAsyncThunk(
 );
 
 /*
- * POST @ /users/logout
+ * POST @ /auth/logout
  * headers: Authorization: Bearer token
  */
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
@@ -64,24 +64,46 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
  * GET @ /users/me
  * headers: Authorization: Bearer token
  */
-
+// auth/operations.js
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    const reduxState = thunkAPI.getState();
-    setAuthHeader(reduxState.auth.token);
-    const response = await axios.get("/auth/refresh");
-    return response.data;
-  },
-  {
-    condition: (_, thunkAPI) => {
-      const reduxState = thunkAPI.getState();
-      return reduxState.auth.token !== null;
-    },
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue("No token");
+    }
+    //  відновлюємо хедер
+    setAuthHeader(persistedToken);
+    try {
+      // якщо на бекенді /auth/current – то міняй тут
+      const { data } = await axios.get("/auth/refresh");
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 
 export default axios;
+
+// export const refreshUser = createAsyncThunk(
+//   "auth/refresh",
+//   async (_, thunkAPI) => {
+//     const reduxState = thunkAPI.getState();
+//     setAuthHeader(reduxState.auth.token);
+//     const response = await axios.get("/auth/refresh");
+//     return response.data;
+//   },
+//   {
+//     condition: (_, thunkAPI) => {
+//       const reduxState = thunkAPI.getState();
+//       return reduxState.auth.token !== null;
+//     },
+//   }
+// );
+
 // приклад нижче ( з умовою)
 // export const refreshUser = createAsyncThunk(
 //     'auth/refresh',

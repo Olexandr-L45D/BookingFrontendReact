@@ -12,6 +12,8 @@ const slice = createSlice({
         id: "1",
         name: "Olena",
         number: "380123456789",
+        email: "123Olena@gmail.com ",
+        role: "business",
       },
     ],
     loading: false,

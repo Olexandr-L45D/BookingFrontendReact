@@ -1,9 +1,14 @@
 // contacts - operattions
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { setAuthHeader } from "../auth/operations";
 
 axios.defaults.baseURL = "https://bookingbackendnode.onrender.com";
-
+// Utility to add JWT - (token)
+// const setAuthHeader = token => {
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
+// Utility to translateText
 const translateText = async (text, targetLanguage) => {
   if (!text || text.trim() === "") {
     console.warn("Немає тексту для перекладу");
@@ -44,23 +49,41 @@ const translateText = async (text, targetLanguage) => {
     return text;
   }
 };
+// ---------------------- ADD CONTACT ----------------------
+export const addContact = createAsyncThunk(
+  "contacts/addContact",
+  async (newContact, { getState, rejectWithValue }) => {
+    try {
+      const token = getState().auth.token;
+      if (!token) return rejectWithValue("No token available");
 
-// Функція для отримання контактів з бекенду і перекладу їх
+      setAuthHeader(token); // додаємо токен до axios
+
+      const response = await axios.post("/contacts", newContact);
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+// ---------------------- FETCH ALL CONTACTS ----------------------
 export const fetchContact = createAsyncThunk(
   "contacts/fetchAll",
   async (_, { getState, rejectWithValue }) => {
     try {
+      const token = getState().auth.token;
+      if (!token) return rejectWithValue("No token available");
+
+      setAuthHeader(token); // додаємо токен до axios
+
       const response = await axios.get("/contacts");
       const contacts = response.data;
 
-      // Отримуємо поточну мову з Redux (з дефолтним значенням)
+      // Якщо потрібно, перекладаємо контакти
       const currentLanguage = getState().language || "en";
+      if (currentLanguage === "en") return contacts;
 
-      if (currentLanguage === "en") {
-        return contacts; // Якщо англійська, не перекладаємо
-      }
-
-      // Перекладемо усі контакти на поточну мову
       const translatedContacts = await Promise.all(
         contacts.map(async contact => ({
           ...contact,
@@ -74,6 +97,55 @@ export const fetchContact = createAsyncThunk(
     }
   }
 );
+// ---------------------- DELETE CONTACTS ----------------------
+export const deleteContact = createAsyncThunk(
+  "contacts/deleteContact",
+  async (contactId, { getState, rejectWithValue }) => {
+    try {
+      const token = getState().auth.token;
+      if (!token) return rejectWithValue("No token available");
+
+      setAuthHeader(token); // додаємо токен в headers
+
+      const res = await axios.delete(`/contacts/${contactId}`);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export default axios;
+
+// // Функція для отримання контактів з бекенду і перекладу їх
+// export const fetchContact = createAsyncThunk(
+//   "contacts/fetchAll",
+//   async (_, { getState, rejectWithValue }) => {
+//     try {
+//       const response = await axios.get("/contacts");
+//       const contacts = response.data;
+
+//       // Отримуємо поточну мову з Redux (з дефолтним значенням)
+//       const currentLanguage = getState().language || "en";
+
+//       if (currentLanguage === "en") {
+//         return contacts; // Якщо англійська, не перекладаємо
+//       }
+
+//       // Перекладемо усі контакти на поточну мову
+//       const translatedContacts = await Promise.all(
+//         contacts.map(async contact => ({
+//           ...contact,
+//           name: await translateText(contact.name, currentLanguage),
+//         }))
+//       );
+
+//       return translatedContacts;
+//     } catch (e) {
+//       return rejectWithValue(e.message);
+//     }
+//   }
+// );
 
 // axios.defaults.baseURL = "https://66ea54bb55ad32cda478635a.mockapi.io";
 // axios.defaults.baseURL = "https://connections-api.goit.global/";
@@ -92,32 +164,50 @@ export const fetchContact = createAsyncThunk(
 //     }
 //   }
 // );
-
+// axios.defaults.baseURL = "https://bookingbackendnode.onrender.com";
 // addContact
-export const addContact = createAsyncThunk(
-  "contacts/addContact",
-  async (newContact, thunkAPI) => {
-    try {
-      const response = await axios.post("/contacts", newContact);
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
+// export const addContact = createAsyncThunk(
+//   "contacts/addContact",
+//   async (newContact, thunkAPI) => {
+//     try {
+//       const response = await axios.post("/contacts", newContact);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
 
-// /contacts/{contactId}
-export const deleteContact = createAsyncThunk(
-  "contacts/deleteContact",
-  async (contactId, thunkAPI) => {
-    try {
-      const res = await axios.delete(`/contacts/${contactId}`);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const addContact = createAsyncThunk(
+//   "contacts/addContact",
+//   async (newContact, thunkAPI) => {
+//     try {
+//       const state = thunkAPI.getState();
+//       const token = state.auth.token; // перевір, чи зберігаєш його тут
+//       if (token) {
+//         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//       }
+
+//       const response = await axios.post("/contacts", newContact);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
+
+// // /contacts/{contactId}
+// export const deleteContact = createAsyncThunk(
+//   "contacts/deleteContact",
+//   async (contactId, thunkAPI) => {
+//     try {
+//       const res = await axios.delete(`/contacts/${contactId}`);
+//       return res.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 // const res = await axios.delete('/contacts/{contactId}');
 //тут в фалі запитів це оголошення 3 операції (1-ша - запит на базовий УРЛ для відмалювання всих контактів - axios.defaults.baseURL, addContact, deleteContact)
