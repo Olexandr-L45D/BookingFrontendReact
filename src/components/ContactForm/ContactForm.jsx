@@ -14,10 +14,34 @@ export default function ContactForm() {
   }
   const notify = () => toast.success(t("contacts.addedNotification")); // Викликаємо toast із перекладеним текстом
 
+  // const handleSubmit = ({ name, phoneNumber, email, role }, actions) => {
+  //   // dispatch(addContact(values));
+  //   dispatch(
+  //     addContact({
+  //       name: name.trim(),
+  //       phoneNumber: phoneNumber.trim(),
+  //       email: email.trim(),
+  //       role: role.trim(),
+  //     })
+  //   );
+  //   actions.resetForm();
+  // };
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    // Обрізаємо пробіли з усіх полів
+    const payload = {
+      name: values.name.trim(),
+      phoneNumber: values.phoneNumber.trim(),
+      email: values.email.trim(),
+      role: values.role.trim(),
+    };
+    // Викликаємо thunk
+    dispatch(addContact(payload));
+    // Очищаємо форму
     actions.resetForm();
+    // Показуємо повідомлення (toast)
+    notify();
   };
+
   return (
     <div className={css.item}>
       <Formik

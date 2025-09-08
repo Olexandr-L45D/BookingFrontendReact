@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import css from "./LoginPage.module.css";
-import { selectLoading } from "../../redux/contacts/selectors";
+import { selectIsLoading } from "../../redux/auth/selectors";
 import { useSelector } from "react-redux";
 import Loader from "../../components/Loader/Loader";
 
 export default function LoginPage() {
   const { t, ready } = useTranslation();
-  const isLoading = useSelector(selectLoading);
+  const isLoading = useSelector(selectIsLoading);
   if (!ready) {
     return <div>Loading translations...</div>;
   }

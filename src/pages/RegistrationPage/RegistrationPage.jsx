@@ -3,11 +3,11 @@ import RegistrationForm from "../../components/RegistrationForm/RegistrationForm
 import css from "./RegistrationPage.module.css";
 import Loader from "../../components/Loader/Loader";
 import { useSelector } from "react-redux";
-import { selectLoading } from "../../redux/contacts/selectors";
+import { selectIsLoading } from "../../redux/auth/selectors";
 
 export default function RegistrationPage() {
   const { t, ready } = useTranslation();
-  const isLoading = useSelector(selectLoading);
+  const isLoading = useSelector(selectIsLoading);
   if (!ready) {
     return <div>Loading translations...</div>;
   }
@@ -23,3 +23,4 @@ export default function RegistrationPage() {
 }
 
 // RegistrationForm BookingPage
+// export const typeList = ['client', 'business'];

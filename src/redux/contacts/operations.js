@@ -66,23 +66,60 @@ axios.defaults.baseURL = "https://bookingbackendnode.onrender.com";
 // );
 
 // ---------------------- ADD CONTACT ----------------------
-// POST /contacts
 export const addContact = createAsyncThunk(
   "contacts/addContact",
-  async (contact, thunkAPI, { getState, rejectWithValue }) => {
+  async ({ name, phoneNumber, email, role }, thunkAPI) => {
     try {
-      // const token = getState().auth.token;
-      const token = getState().auth.token || localStorage.getItem("token");
-      if (!token) return rejectWithValue("No token available");
-      setAuthHeader(token); // додаємо токен до axios
-      const { data } = await axios.post("/contacts", contact);
-      // сервер повертає { status, message, contact: {...} }
-      return data.contact; // 👈 один об'єкт
+      // ✅ беремо токен з Redux або localStorage
+      const state = thunkAPI.getState();
+      const token = state.auth.token || localStorage.getItem("token");
+      if (!token) {
+        return thunkAPI.rejectWithValue("No token available");
+      }
+
+      // ✅ додаємо токен в axios (універсально для всіх запитів)
+      setAuthHeader(token);
+
+      // ✅ відправляємо на бекенд
+      const { data } = await axios.post("/contacts", {
+        name,
+        phoneNumber,
+        email,
+        role,
+      });
+
+      // ⚠️ припускаю, що бекенд повертає так:
+      // { status, message, contact: {...} }
+      if (!data || !data.contact) {
+        return thunkAPI.rejectWithValue("Invalid server response");
+      }
+
+      return data.contact; // 👈 віддаємо об’єкт контакту у fulfilled
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );
+
+// POST /contacts
+// export const addContact = createAsyncThunk(
+//   "contacts/addContact",
+//   async (contact, thunkAPI, { getState, rejectWithValue }) => {
+//     try {
+//       // const token = getState().auth.token;
+//       const token = getState().auth.token || localStorage.getItem("token");
+//       if (!token) return rejectWithValue("No token available");
+//       setAuthHeader(token); // додаємо токен до axios
+//       const { data } = await axios.post("/contacts", contact);
+//       // сервер повертає { status, message, contact: {...} }
+//       return data.contact; // 👈 один об'єкт
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 // ---------------------- FETCH ALL CONTACTS ----------------------
 export const fetchContact = createAsyncThunk(
   "contacts/fetchAll",
