@@ -31,7 +31,7 @@ export default function Contact({ contact }) {
         </p>
         <p className={css.text}>
           <AiFillPhone />
-          {t("contacts.labelPhone")}: {contact.number}
+          {t("contacts.labelPhone")}: {contact.phoneNumber}
         </p>
         <p className={css.text}>
           <FcAddressBook />

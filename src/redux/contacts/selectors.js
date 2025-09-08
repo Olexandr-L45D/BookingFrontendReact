@@ -20,12 +20,19 @@ export const selectOutContacts = createSelector(
     return contacts.filter(
       contact =>
         contact.name?.toLowerCase().includes(normalized) ||
-        contact.phoneNumber?.toLowerCase().includes(normalized) ||
-        contact.email?.toLowerCase().includes(normalized) ||
         contact.role?.toLowerCase().includes(normalized)
     );
   }
 );
+// якщо я хочу фільтраціюпо всим параметрам то вношу все що є у контакта
+// return contacts.filter(
+//   contact =>
+//     contact.name?.toLowerCase().includes(normalized) ||
+//     contact.phoneNumber?.toLowerCase().includes(normalized) ||
+//     contact.email?.toLowerCase().includes(normalized) ||
+//     contact.role?.toLowerCase().includes(normalized)
+// );
+
 // export const selectOutContacts = createSelector(
 //   [selectContacts, selectStatusFilter],
 //   (contacts, filter) => {

@@ -1,4 +1,4 @@
-// contactsSlice.js (це окрема локаль - locale-slice)
+// contactsSlice.js (це окрема локаль - locale-slice для конактів)
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchContact, addContact, deleteContact } from "./operations";
 
@@ -7,11 +7,11 @@ import { logOut } from "../auth/operations";
 const slice = createSlice({
   name: "contacts",
   initialState: {
-    // items: [
+    // items: [  зразок масива з початковими данними який раніше при рендеру компонента відображався на сторінці (тобто в принципі працювало , тільки далі була помилка при мепі відповіді з сервера!)
     //   {
     //     id: "1",
     //     name: "Olena",
-    //     number: "380123456789",
+    //     phoneNumber: "380123456789",
     //     email: "123Olena@gmail.com ",
     //     role: "business",
     //   },
@@ -51,6 +51,7 @@ const slice = createSlice({
         state.loading = true;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
+        state.items = state.items.filter(c => c.id !== action.payload.id);
         state.loading = false;
         state.error = null;
         const index = state.items.findIndex(

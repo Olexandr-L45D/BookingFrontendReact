@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 
 export default function ContactList() {
   const items = useSelector(selectOutContacts);
+  if (!Array.isArray(items)) {
+    return <p>❌ Contacts not loaded</p>;
+  }
 
   return (
     <div className={css.container}>

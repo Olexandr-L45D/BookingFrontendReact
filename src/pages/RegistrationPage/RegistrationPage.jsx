@@ -1,9 +1,13 @@
 import { useTranslation } from "react-i18next";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 import css from "./RegistrationPage.module.css";
+import Loader from "../../components/Loader/Loader";
+import { useSelector } from "react-redux";
+import { selectLoading } from "../../redux/contacts/selectors";
 
 export default function RegistrationPage() {
   const { t, ready } = useTranslation();
+  const isLoading = useSelector(selectLoading);
   if (!ready) {
     return <div>Loading translations...</div>;
   }
@@ -11,7 +15,8 @@ export default function RegistrationPage() {
     <main>
       <div className={css.container}>
         <h3 className={css.cartForm}>{t("register.titleRegistr")}</h3>
-        <RegistrationForm />
+        {isLoading ? <Loader /> : <RegistrationForm />}
+        {/* <RegistrationForm /> */}
       </div>
     </main>
   );
