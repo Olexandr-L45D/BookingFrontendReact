@@ -30,12 +30,3 @@ export default function ContactsPage() {
     </section>
   );
 }
-
-// Тут треба додати ЛОАДЕР поки чекаю відповідь з сервера!!!)
-
-// Your Contact Card   (треба додати ЛОАДЕР поки чекаю відповідь з сервера!!!)
-// {/* <ContactForm />
-// { loading && <Loader>Loading message</Loader> }
-// { error && <Error>Error message</Error> }
-//       <SearchBox />
-//       <ContactList /> */}

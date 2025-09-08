@@ -1,12 +1,12 @@
 import css from "./UpdateBookingForm.module.css";
 import { Formik, Form, Field } from "formik";
 import { ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { updateBooking } from "../../redux/booking/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
-export default function BookingForm() {
+export default function UpdateBookingForm() {
   const dispatch = useDispatch();
   const { t, ready } = useTranslation();
   if (!ready) {
@@ -15,40 +15,45 @@ export default function BookingForm() {
   const notify = () => toast.success(t("contacts.addedNotification")); // Викликаємо toast із перекладеним текстом
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    // Обрізаємо пробіли з усіх полів
+    const payload = {
+      id: values.id.trim(),
+      date: values.date.trim(),
+      time: values.time.trim(),
+    };
+    // Викликаємо thunk
+    dispatch(updateBooking(payload));
+    // Очищаємо форму
     actions.resetForm();
+    // Показуємо повідомлення (toast)
+    notify();
   };
   return (
     <div className={css.item}>
       <Formik
         initialValues={{
-          businessId: " ",
+          id: " ",
           date: " ",
           time: " ",
-          role: " ",
         }}
         onSubmit={handleSubmit}
       >
         <Form>
           <div className={css.items}>
-            <label className={css.label}>BusinessId</label>
+            <label className={css.label}>Booking Id</label>
             <Field
               className={css.inp}
-              type="text"
-              name="businessId"
-              placeholder="Enter businessId..."
+              type="id"
+              name="id"
+              placeholder="Enter booking id..."
             />
-            <ErrorMessage
-              className={css.messag}
-              name="businessId"
-              component="span"
-            />
+            <ErrorMessage className={css.messag} name="id" component="span" />
           </div>
           <div className={css.items}>
             <label className={css.label}>Date</label>
             <Field
               className={css.inp}
-              type="text"
+              type="date"
               name="date"
               placeholder="Enter date format: 2025-09-07..."
             />
@@ -59,31 +64,16 @@ export default function BookingForm() {
             <label className={css.label}>Time</label>
             <Field
               className={css.inp}
-              type="text"
+              type="time"
               name="time"
               placeholder="Enter time..."
             />
-            <ErrorMessage
-              className={css.messag}
-              name="email"
-              component="span"
-            />
-          </div>
-
-          <div className={css.items}>
-            <label className={css.label}>Role</label>
-            <Field
-              className={css.inp}
-              type="name"
-              name="role"
-              placeholder="Enter role..."
-            />
-            <ErrorMessage className={css.messag} name="role" component="span" />
+            <ErrorMessage className={css.messag} name="time" component="span" />
           </div>
 
           <div className={css.btn}>
             <button onClick={notify} className={css.addContact} type="submit">
-              {t("contacts.added")}
+              {t("contacts.bookong")}
             </button>
             <Toaster />
           </div>
@@ -93,22 +83,30 @@ export default function BookingForm() {
   );
 }
 
-// {
-//   "time": "2025-09-10T14:00:00Z",
-//   "contact": "John Doe",
-//   "phoneNumber": "+380501234567",
-//   "tableNumber": 12
-// }
+// updateBooking - services
 
-// {
-//   "status": 200,
-//   "message": "Booking updated successfully",
-//   "data": {
-//     "id": "64adf1c2a1b23cd456ef890a",
-//     "clientId": "64adf1c2a1b23cd456ef1111",
-//     "businessId": "64adf1c2a1b23cd456ef2222",
-//     "date": "2025-09-10",
-//     "time": "14:00",
-//     "status": "pending"
-//   }
-// }
+// "requestBody": {
+//           "required": true,
+//           "content": {
+//             "application/json": {
+//               "schema": {
+//                 "type": "object",
+//                 "properties": {
+//                   "time": {
+//                     "type": "string",
+//                     "format": "date-time",
+//                     "example": "2025-09-10T14:00:00Z"
+//                   },
+//                   "contact": {
+//                     "type": "string",
+//                     "example": "John Doe"
+//                   },
+//                   "phoneNumber": {
+//                     "type": "string",
+//                     "example": "+380501234567"
+//                   },
+//                   "tableNumber": {
+//                     "type": "integer",
+//                     "example": 12
+//                   }
+//                 }

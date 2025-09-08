@@ -1,19 +1,27 @@
 .container {
-  margin-top: 50px;
+  margin-top: 270px;
   width: 100%;
   max-width: 340px;
   height: 100%;
   max-height: 780px;
   position: fixed;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex; /* щоб працювало justify/align */
+  display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
   background-color: rgb(0, 187, 255);
+}
+.cartTitle {
+  padding: 2px;
+  margin: 8px 0;
+  margin-top: 30px;
+  color: black;
+  font-size: 1.6em;
+  font-weight: 600;
+  text-align: center;
 }
 @media (min-width: 339px) {
   .container {
@@ -21,36 +29,29 @@
     max-height: 850px;
   }
 }
-/* 💻 планшети горизонтально / маленькі ноутбуки */
 @media (min-width: 768px) {
   .container {
     max-width: 1024px;
+    margin-top: 130px;
+  }
+  .cartTitle {
+    margin: 8px 0;
+    margin-top: 30px;
+    font-size: 2em;
+    font-weight: 700;
   }
 }
 
-/* 🖥️ стандартні десктопи */
 @media (min-width: 1023px) {
   .container {
     max-width: 1280px;
+    margin-top: 130px;
   }
 }
 
-/* 🖥️ великі десктопи */
 @media (min-width: 1279px) {
   .container {
     max-width: 1440px;
+    margin-top: 70px;
   }
-}
-
-.cartTitle {
-  padding: 2px;
-  margin: 2px;
-  color: black;
-  font-size: 2em;
-  font-weight: 700;
-  line-height: 1.5;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
 }

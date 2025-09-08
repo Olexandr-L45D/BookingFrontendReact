@@ -1,116 +1,66 @@
 .container {
-  margin-top: 50px;
   width: 100%;
   max-width: 340px;
-  height: 100%;
-  max-height: 780px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex; /* щоб працювало justify/align */
+  flex: 1; /* 🔹 розтягується */
+  display: flex;
   flex-direction: column;
-  text-align: center;
-  justify-content: center;
   align-items: center;
-  background-color: rgb(230, 255, 240);
-  /* background-color: rgb(255, 250, 230);  */
-  /* background-color: rgb(245, 240, 255);  */
-}
-@media (min-width: 339px) {
-  .container {
-    max-width: 370px;
-    max-height: 850px;
-  }
-}
-/* 💻 планшети горизонтально / маленькі ноутбуки */
-@media (min-width: 768px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-/* 🖥️ стандартні десктопи */
-@media (min-width: 1023px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-/* 🖥️ великі десктопи */
-@media (min-width: 1279px) {
-  .container {
-    max-width: 1440px;
-  }
+  padding: 8px;
+  box-sizing: border-box;
+  overflow-y: auto; /* 🔹 скрол на мобілках */
 }
 
 .list {
-  margin: 2px;
-  padding: 2px;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  text-align: center;
-  justify-content: center;
   align-items: center;
   gap: 8px;
 }
 
 .item {
-  width: 250px;
+  width: 100%;
+  max-width: 330px;
   list-style: none;
   margin: 5px;
   padding: 5px;
 }
 
 @media screen and (min-width: 768px) {
-  .list {
-    padding: 0px;
-    margin: 0px;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    color: rgb(19, 20, 20);
+  .container {
+    max-width: 1024px;
   }
-
+  .list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
   .item {
-    margin-left: 20px;
-    padding-left: 40px;
-    width: 250px;
-    list-style: none;
     width: calc((100% - 8px) / 2);
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .list {
-    gap: 10px;
+  .container {
+    max-width: 1200px;
   }
-
   .item {
-    margin-left: 20px;
-    padding-left: 50px;
-    width: 250px;
-    list-style: none;
     width: calc((100% - 10px) / 3);
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .list {
-    margin: 5px;
-    padding: 5px;
-    gap: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+  .container {
+    max-width: 1440px;
   }
-
+  .list {
+    gap: 16px;
+  }
   .item {
-    margin: 5px;
-    padding: 5px;
-    width: 250px;
-    list-style: none;
     width: calc((100% - 16px) / 5);
   }
 }

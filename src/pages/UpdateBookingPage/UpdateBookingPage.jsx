@@ -4,7 +4,7 @@ import css from "./UpdateBookingPage.module.css";
 import UpdateBookingForm from "../../components/UpdateBookingForm/UpdateBookingForm";
 
 export default function UpdateBookingPage() {
-  const { t, ready } = useTranslation();
+  const { ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
   }
@@ -12,7 +12,7 @@ export default function UpdateBookingPage() {
     <main>
       <div className={css.container}>
         <h3 className={css.cartForm}>
-          {t("register.titleRegistr")}
+          {/* {t("register.titleRegistr")} */}
           Update reservation
         </h3>
         <UpdateBookingForm />

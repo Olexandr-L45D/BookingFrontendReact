@@ -1,9 +1,10 @@
 // BookingContact
 import css from "./BookingContact.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
-import { AiFillPhone } from "react-icons/ai";
+import { FcAlarmClock } from "react-icons/fc";
+import { FcVip } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/operations";
+import { deleteBooking } from "../../redux/booking/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
@@ -16,26 +17,44 @@ export default function BookingContact({ contact }) {
   const notify = () => toast.success("reservation deleted"); // Викликаємо тост із перекладеним текстом
 
   const handleDelete = () => {
-    dispatch(deleteContact(contact.id)); // Видаляємо контакт
+    dispatch(deleteBooking(contact.id)); // Видаляємо контакт
     notify(); // Показуємо повідомлення
   };
 
   return (
-    <div className={css.item}>
-      <div className={css.itemText}>
-        <p className={css.text}>
+    <section className={css.item}>
+      <ul className={css.itemText}>
+        <li className={css.text}>
           <BsFillPersonFill />
-          {t("contacts.labelName")}: {contact.name}
-        </p>
-        <p className={css.text}>
-          <AiFillPhone />
-          {t("contacts.labelPhone")}: {contact.number}
-        </p>
-      </div>
+          {t("contacts.labelName")}: {contact.id}
+        </li>
+        <li className={css.text}>Client Id: {contact.clientId}</li>
+        <li className={css.text}>
+          <FcVip />
+          Business Id: {contact.businessId}
+        </li>
+        <li className={css.text}>Date: {contact.date}</li>
+        <li className={css.text}>
+          <FcAlarmClock />
+          Time: {contact.time}
+        </li>
+        <li className={css.text}>Status: {contact.status}</li>
+      </ul>
       <button className={css.btn} onClick={handleDelete}>
         {t("contacts.delete")}
       </button>
       <Toaster />
-    </div>
+    </section>
   );
 }
+
+// [
+//   {
+//     id: "64adf1c2a1b23cd456ef890a",
+//     clientId: "64adf1c2a1b23cd456ef1111",
+//     businessId: "64adf1c2a1b23cd456ef2222",
+//     date: "2025-09-10",
+//     time: "14:00",
+//     status: "pending",
+//   },
+// ];

@@ -1,31 +1,56 @@
 import css from "./BookingForm.module.css";
 import { Formik, Form, Field } from "formik";
 import { ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { useDispatch, useSelector } from "react-redux";
+import { addReserve } from "../../redux/booking/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+// import { selectAllReservationsBooking } from "../../redux/booking/selectors";
 
 export default function BookingForm() {
   const dispatch = useDispatch();
+  const bookings = useSelector(state => state.booking.items || []);
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
   }
+
   const notify = () => toast.success(t("contacts.addedNotification")); // Викликаємо toast із перекладеним текстом
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    const payload = {
+      businessId: values.businessId.trim(),
+      date: values.date.trim(),
+      time: values.time.trim(),
+    };
+
+    // перевірка на конфлікт
+    const isTaken = bookings.some(
+      b =>
+        b.businessId === payload.businessId &&
+        b.date === payload.date &&
+        b.time === payload.time &&
+        b.status !== "cancelled"
+    );
+
+    if (isTaken) {
+      toast.error("Цей час вже зайнятий! Оберіть +30 хвилин або інший день.");
+      return; // не відправляємо dispatch
+    }
+
+    // Викликаємо thunk
+    dispatch(addReserve(payload));
     actions.resetForm();
+    notify();
   };
+
   return (
     <div className={css.item}>
       <Formik
         initialValues={{
-          businessId: " ",
-          date: " ",
-          time: " ",
-          role: " ",
+          businessId: "",
+          date: "",
+          time: "",
         }}
         onSubmit={handleSubmit}
       >
@@ -48,7 +73,7 @@ export default function BookingForm() {
             <label className={css.label}>Date</label>
             <Field
               className={css.inp}
-              type="text"
+              type="date"
               name="date"
               placeholder="Enter date format: 2025-09-07..."
             />
@@ -59,31 +84,16 @@ export default function BookingForm() {
             <label className={css.label}>Time</label>
             <Field
               className={css.inp}
-              type="text"
+              type="time"
               name="time"
               placeholder="Enter time..."
             />
-            <ErrorMessage
-              className={css.messag}
-              name="email"
-              component="span"
-            />
-          </div>
-
-          <div className={css.items}>
-            <label className={css.label}>Role</label>
-            <Field
-              className={css.inp}
-              type="name"
-              name="role"
-              placeholder="Enter role..."
-            />
-            <ErrorMessage className={css.messag} name="role" component="span" />
+            <ErrorMessage className={css.messag} name="time" component="span" />
           </div>
 
           <div className={css.btn}>
             <button onClick={notify} className={css.addContact} type="submit">
-              {t("contacts.added")}
+              {t("contacts.bookong")}
             </button>
             <Toaster />
           </div>
@@ -93,13 +103,15 @@ export default function BookingForm() {
   );
 }
 
+// updateBooking - services
+// // те що вношу в форму бронювання  =
 // {
 //   "businessId": "68bc6b9f2f071eae4ff81caa",
 //   "date": "2025-09-07",
 //   "time": "11:00"
 // }
 
-// відповідь =
+// // відповідь при вдалому бронюванню =
 
 // {
 //   "status": 201,

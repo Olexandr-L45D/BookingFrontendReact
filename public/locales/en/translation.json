@@ -37,7 +37,8 @@
     "titleContact": "Create contact",
     "titleContactbook": "Contactbook",
     "titleWelcom": "If you want to book an appointment, please register or log in.",
-    "create": "Create Account"
+    "create": "Create Account",
+    "bookong": "Reserve"
   },
   "loader": {
     "shortTextMessage": "Text must be longer than 3 characters"

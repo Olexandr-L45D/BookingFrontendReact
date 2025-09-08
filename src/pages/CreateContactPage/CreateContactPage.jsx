@@ -13,7 +13,6 @@ export default function CreateContactPage() {
     <div className={css.container}>
       <h1 className={css.cartTitle}>{t("contacts.titleContact")}</h1>
       {isLoading ? <Loader /> : <ContactForm />}
-      {/* <ContactForm /> */}
     </div>
   );
 }

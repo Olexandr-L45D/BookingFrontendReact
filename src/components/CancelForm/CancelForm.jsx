@@ -1,108 +1,82 @@
-// CancelForm
+//Component CancelForm
 import css from "./CancelForm.module.css";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ErrorMessage } from "formik";
+import { cancelBooking } from "../../redux/booking/operations";
+import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
 export default function CancelForm() {
-  const { t } = useTranslation();
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    bookingDate: Yup.date()
-      .min(new Date(), "Booking date cannot be in the past")
-      .required("Booking date is required"),
-    comment: Yup.string().max(200, "Comment cannot exceed 200 characters"),
-  });
+  const dispatch = useDispatch();
+  const { t, ready } = useTranslation();
+  if (!ready) {
+    return <div>Loading translations...</div>;
+  }
+  const notify = () => toast.success("reservation cancelled"); // Викликаємо toast із перекладеним текстом
 
   const handleSubmit = (values, actions) => {
-    toast.success("Booking successful!");
+    // Обрізаємо пробіли з усіх полів
+    const payload = {
+      id: values.id.trim(),
+      status: values.status.trim(),
+    };
+    // Викликаємо thunk
+    dispatch(cancelBooking(payload));
+    // Очищаємо форму
     actions.resetForm();
+    // Показуємо повідомлення (toast)
+    notify();
   };
   return (
     <div className={css.item}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000} // 5 seconds
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <Formik
         initialValues={{
-          name: "",
-          email: "",
-          bookingDate: "",
-          comment: "",
+          id: " ",
+          status: " ",
         }}
-        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched }) => (
-          <Form>
-            <Field type="hidden" id="truckId" name="truckId" />
-            <fieldset className={css.formGroup}>
-              <Field
-                className={css.inp}
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Name *"
-              />
-              {errors.name && touched.name && <div>{errors.name}</div>}
-            </fieldset>
+        <Form>
+          <div className={css.items}>
+            <label className={css.label}>Booking Id</label>
+            <Field
+              className={css.inp}
+              type="id"
+              name="id"
+              placeholder="Enter booking id..."
+            />
+            <ErrorMessage className={css.messag} name="id" component="span" />
+          </div>
+          <div className={css.items}>
+            <label className={css.label}>Status</label>
+            <Field
+              className={css.inp}
+              type="text"
+              name="status"
+              placeholder="Enter the cancelled..."
+            />
+            <ErrorMessage
+              className={css.messag}
+              name="status"
+              component="span"
+            />
+          </div>
 
-            <fieldset className={css.formGroup}>
-              <Field
-                className={css.inp}
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email *"
-              />
-              {errors.email && touched.email && <div>{errors.email}</div>}
-            </fieldset>
-
-            <fieldset className={css.formGroup}>
-              <Field
-                className={css.inp}
-                type="date"
-                id="bookingDate"
-                name="bookingDate"
-                placeholder="Booking date *"
-              />
-              {errors.bookingDate && touched.bookingDate && (
-                <div>{errors.bookingDate}</div>
-              )}
-            </fieldset>
-
-            <fieldset className={css.formGroup}>
-              <Field
-                className={css.inptextarea}
-                as="textarea"
-                id="comment"
-                name="comment"
-                placeholder="Comment *"
-              />
-              {errors.comment && touched.comment && <div>{errors.comment}</div>}
-            </fieldset>
-
-            <section className={css.buttonSend}>
-              <button className={css.btnSend} type="submit">
-                {t("navigation.send")}
-              </button>
-            </section>
-          </Form>
-        )}
+          <div className={css.btn}>
+            <button
+              onClick={notify}
+              className={css.cancelledButton}
+              type="submit"
+            >
+              {t("contacts.bookong")}
+            </button>
+            <Toaster />
+          </div>
+        </Form>
       </Formik>
     </div>
   );
 }
+
+// "status": "pending", "cancelled"

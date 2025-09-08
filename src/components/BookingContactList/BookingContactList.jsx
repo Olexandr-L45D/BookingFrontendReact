@@ -1,11 +1,11 @@
 // BookingContactList
 import css from "./BookingContactList.module.css";
-import { selectOutContacts } from "../../redux/contacts/selectors";
+import { selectAllReservationsBooking } from "../../redux/booking/selectors";
 import { useSelector } from "react-redux";
 import BookingContact from "../BookingContact/BookingContact";
 
 export default function BookingContactList() {
-  const items = useSelector(selectOutContacts);
+  const items = useSelector(selectAllReservationsBooking);
 
   return (
     <div className={css.container}>

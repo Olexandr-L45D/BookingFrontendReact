@@ -16,6 +16,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { bookingReducer } from "./booking/slice";
 
 const persistedAuthReducer = persistReducer(
   {
@@ -28,6 +29,7 @@ const persistedAuthReducer = persistReducer(
 
 export const store = configureStore({
   reducer: {
+    booking: bookingReducer,
     contacts: tasksReducerCard,
     filters: filtersReducer,
     auth: persistedAuthReducer,

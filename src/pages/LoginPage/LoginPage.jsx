@@ -16,27 +16,7 @@ export default function LoginPage() {
       <div className={css.container}>
         <h1 className={css.cartTitle}>{t("login.titleLogin")}</h1>
         {isLoading ? <Loader /> : <LoginForm />}
-        {/* <LoginForm /> */}
       </div>
     </main>
   );
 }
-
-// const [products, setProduct] = useState([]);
-// const [loading, setLoading] = useState(false);
-// const [error, setError] = useState(null);
-
-// useEffect(() => {
-//     async function fetchData() {
-//         try {
-//             setLoading(true);
-//             setError(false);
-//             // const data = await getProductMovies();
-//             setProduct(data);
-//             setLoading(false);
-//         } catch (error) {
-//             setError("Sorry Bad Login");
-//         }
-//     }
-//     fetchData();
-// }, []);
