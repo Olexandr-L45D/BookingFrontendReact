@@ -70,7 +70,7 @@ export const deleteBooking = createAsyncThunk(
       setAuthHeader(token); // додаємо токен в headers
 
       await axios.delete(`/bookings/${id}`);
-      return { id }; // 👈 повертаємо id для видалення зі стейту
+      return { _id: id }; // 👈 повертаємо id для видалення зі стейту
     } catch (error) {
       return rejectWithValue(error.message);
     }

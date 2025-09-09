@@ -1,8 +1,8 @@
 // BookingContact
 import css from "./BookingContact.module.css";
-import { BsFillPersonFill } from "react-icons/bs";
 import { FcAlarmClock } from "react-icons/fc";
 import { FcVip } from "react-icons/fc";
+import { FcCalendar } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { deleteBooking } from "../../redux/booking/operations";
 import toast, { Toaster } from "react-hot-toast";
@@ -17,32 +17,34 @@ export default function BookingContact({ contact }) {
   const notify = () => toast.success("reservation deleted"); // Викликаємо тост із перекладеним текстом
 
   const handleDelete = () => {
-    dispatch(deleteBooking(contact.id)); // Видаляємо контакт
+    dispatch(deleteBooking(contact._id)); // Видаляємо контакт
     notify(); // Показуємо повідомлення
   };
 
   return (
     <section className={css.item}>
-      <ul className={css.itemText}>
-        <li className={css.text}>
-          <BsFillPersonFill />
-          {t("contacts.labelName")}: {contact.id}
-        </li>
-        <li className={css.text}>Client Id: {contact.clientId}</li>
-        <li className={css.text}>
-          <FcVip />
-          Business Id: {contact.businessId}
-        </li>
-        <li className={css.text}>Date: {contact.date}</li>
-        <li className={css.text}>
-          <FcAlarmClock />
-          Time: {contact.time}
-        </li>
-        <li className={css.text}>Status: {contact.status}</li>
-      </ul>
-      <button className={css.btn} onClick={handleDelete}>
-        {t("contacts.delete")}
-      </button>
+      <section className={css.itemBlock}>
+        <ul className={css.itemText}>
+          <li className={css.text}>
+            <FcCalendar className={css.iconReact} />
+            Booking Id: {contact._id}
+          </li>
+          <li className={css.text}>Client Id: {contact.clientId}</li>
+          <li className={css.text}>
+            <FcVip className={css.iconReact} />
+            Business Id: {contact.businessId}
+          </li>
+          <li className={css.text}>Date: {contact.date}</li>
+          <li className={css.text}>
+            <FcAlarmClock className={css.iconReact} />
+            Time: {contact.time}
+          </li>
+          <li className={css.text}>Status: {contact.status}</li>
+        </ul>
+        <button className={css.btn} onClick={handleDelete}>
+          {t("contacts.delete")}
+        </button>
+      </section>
       <Toaster />
     </section>
   );

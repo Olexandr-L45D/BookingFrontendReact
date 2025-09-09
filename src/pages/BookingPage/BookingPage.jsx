@@ -4,17 +4,14 @@ import css from "./BookingPage.module.css";
 import BookingForm from "../../components/BookingForm/BookingForm";
 
 export default function BookingPage() {
-  const { ready } = useTranslation();
+  const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
   }
   return (
     <main>
       <div className={css.container}>
-        <h3 className={css.cartForm}>
-          {/* {t("register.titleRegistr")} */}
-          Create a reservation
-        </h3>
+        <h3 className={css.cartForm}>{t("register.titleSchedule")}</h3>
         <BookingForm />
       </div>
     </main>

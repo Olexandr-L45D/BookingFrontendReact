@@ -52,6 +52,10 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.token = null;
+        state.user = null;
+        state.error = false;
+        localStorage.removeItem("token"); // 👈 очищаємо локалсторедж
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.isLoading = true;

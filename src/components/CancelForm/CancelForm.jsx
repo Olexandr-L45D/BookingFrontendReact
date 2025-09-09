@@ -29,53 +29,56 @@ export default function CancelForm() {
     notify();
   };
   return (
-    <div className={css.item}>
-      <Formik
-        initialValues={{
-          id: " ",
-          status: " ",
-        }}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <div className={css.items}>
-            <label className={css.label}>Booking Id</label>
-            <Field
-              className={css.inp}
-              type="id"
-              name="id"
-              placeholder="Enter booking id..."
-            />
-            <ErrorMessage className={css.messag} name="id" component="span" />
-          </div>
-          <div className={css.items}>
-            <label className={css.label}>Status</label>
-            <Field
-              className={css.inp}
-              type="text"
-              name="status"
-              placeholder="Enter the cancelled..."
-            />
-            <ErrorMessage
-              className={css.messag}
-              name="status"
-              component="span"
-            />
-          </div>
+    <>
+      <h1 className={css.cartForm}>Cancellation Form</h1>
+      <div className={css.item}>
+        <Formik
+          initialValues={{
+            id: " ",
+            status: " ",
+          }}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <div className={css.items}>
+              <label className={css.label}>Booking Id</label>
+              <Field
+                className={css.inp}
+                type="id"
+                name="id"
+                placeholder="Enter booking id..."
+              />
+              <ErrorMessage className={css.messag} name="id" component="span" />
+            </div>
+            <div className={css.items}>
+              <label className={css.label}>Status</label>
+              <Field
+                className={css.inp}
+                type="status"
+                name="status"
+                placeholder="Enter the cancelled..."
+              />
+              <ErrorMessage
+                className={css.messag}
+                name="status"
+                component="span"
+              />
+            </div>
 
-          <div className={css.btn}>
-            <button
-              onClick={notify}
-              className={css.cancelledButton}
-              type="submit"
-            >
-              {t("contacts.bookong")}
-            </button>
-            <Toaster />
-          </div>
-        </Form>
-      </Formik>
-    </div>
+            <div className={css.btn}>
+              <button
+                onClick={notify}
+                className={css.cancelledButton}
+                type="submit"
+              >
+                {t("contacts.bookongCancelled")}
+              </button>
+              <Toaster />
+            </div>
+          </Form>
+        </Formik>
+      </div>
+    </>
   );
 }
 

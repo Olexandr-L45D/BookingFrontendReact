@@ -46,3 +46,19 @@
   border-color: black;
   border-radius: 5px;
 }
+.itemBlock {
+  padding: 1px;
+  margin: 1px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: end;
+  justify-content: center;
+}
+.iconReact {
+  margin-right: 6px;
+  height: auto;
+  width: 30px;
+  text-align: center;
+  align-items: center;
+}

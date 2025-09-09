@@ -1,10 +1,21 @@
 .blokLink {
   margin: 5px;
   padding: 1px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
@@ -13,11 +24,13 @@
 }
 
 .link {
-  padding: 8px 16px;
-  border-radius: 4px;
+  margin: 3px;
+  padding: 8px;
+  border-radius: 8px;
   text-decoration: none;
   color: black;
   font-weight: 500;
+  background-color: rgb(11, 68, 199);
 }
 
 .active {

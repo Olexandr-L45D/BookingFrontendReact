@@ -12,7 +12,21 @@
 }
 
 .button {
-  margin: 10px;
+  margin: 8px;
   color: black;
-  background-color: #ffffff;
+  background-color: hsl(343, 89%, 50%);
+}
+.button:focus {
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #6609c9;
+  font-weight: 500;
+}
+.button:hover {
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: hsl(269, 93%, 18%);
+  font-weight: 500;
 }

@@ -7,7 +7,8 @@
     "titleContactbook": "Книга контактів"
   },
   "register": {
-    "titleRegistr": "Форма регістрації"
+    "titleRegistr": "Форма регістрації",
+    "titleSchedule": "Заплануй зустрічь"
   },
   "login": {
     "titleLogin": "ФОРМА ЛОГІНУ"
@@ -37,7 +38,8 @@
     "titleContactbook": "Книга контактів",
     "titleWelcom": "Якщо ви хочете забронювати зустрічь зарегеструйтесь або авторизуйтесь",
     "create": "Створити Аккаунт",
-    "bookong": "Забронювати"
+    "bookong": "Забронювати",
+    "bookongCancelled": "Відмінити"
   },
   "loader": {
     "shortTextMessage": "Текст має бути довшим за 3 символи"

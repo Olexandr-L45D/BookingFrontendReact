@@ -12,11 +12,13 @@
 
 .list {
   margin: 0;
+  margin-top: 5px;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  list-style-type: none;
 }
 
 .item {
@@ -32,6 +34,7 @@
     max-width: 1024px;
   }
   .list {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -61,6 +64,24 @@
     gap: 16px;
   }
   .item {
+    width: calc((100% - 16px) / 4);
+  }
+}
+@media screen and (min-width: 1700px) {
+  .container {
+    max-width: 1700px;
+  }
+  .list {
+    gap: 16px;
+  }
+  .item {
     width: calc((100% - 16px) / 5);
   }
+}
+
+ul,
+ol {
+  list-style-type: none; /* вимикає маркери і цифри */
+  padding-left: 0; /* прибирає відступ зліва */
+  margin: 0; /* додатково можна прибрати зовнішній відступ */
 }

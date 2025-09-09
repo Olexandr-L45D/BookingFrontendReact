@@ -48,20 +48,18 @@ const bookingSlice = createSlice({
       })
       // --- DELETE ---
       .addCase(deleteBooking.fulfilled, (state, action) => {
-        state.items = state.items.filter(b => b.id !== action.payload.id);
+        state.items = state.items.filter(b => b._id !== action.payload._id);
       })
-
       // --- CANCEL ---
       .addCase(cancelBooking.fulfilled, (state, action) => {
-        const idx = state.items.findIndex(b => b.id === action.payload.id);
+        const idx = state.items.findIndex(b => b._id === action.payload._id);
         if (idx !== -1) {
           state.items[idx] = { ...state.items[idx], ...action.payload };
         }
       })
-
       // --- UPDATE ---
       .addCase(updateBooking.fulfilled, (state, action) => {
-        const idx = state.items.findIndex(b => b.id === action.payload.id);
+        const idx = state.items.findIndex(b => b._id === action.payload._id);
         if (idx !== -1) {
           state.items[idx] = { ...state.items[idx], ...action.payload };
         }

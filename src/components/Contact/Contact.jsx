@@ -18,7 +18,7 @@ export default function Contact({ contact }) {
   const notify = () => toast.success(t("contacts.deleteNotification")); // Викликаємо тост із перекладеним текстом
 
   const handleDelete = () => {
-    dispatch(deleteContact(contact.id)); // Видаляємо контакт
+    dispatch(deleteContact(contact._id)); // Видаляємо контакт
     notify(); // Показуємо повідомлення
   };
 
@@ -26,24 +26,24 @@ export default function Contact({ contact }) {
     <div className={css.item}>
       <div className={css.itemText}>
         <p className={css.text}>
-          <BsFillPersonFill />
+          <BsFillPersonFill className={css.iconReact} />
           {t("contacts.labelName")}: {contact.name}
         </p>
         <p className={css.text}>
-          <AiFillPhone />
+          <AiFillPhone className={css.iconReact} />
           {t("contacts.labelPhone")}: {contact.phoneNumber}
         </p>
         <p className={css.text}>
-          <FcAddressBook />
+          <FcAddressBook className={css.iconReact} />
           Email: {contact.email}
         </p>
         <p className={css.text}>
-          <AiOutlineHome />
+          <AiOutlineHome className={css.iconReact} />
           Role: {contact.role}
         </p>
         <p className={css.text}>
-          <FcAbout />
-          Id: {contact.id}
+          <FcAbout className={css.iconReact} />
+          Id: {contact._id}
         </p>
       </div>
       <button className={css.btn} onClick={handleDelete}>

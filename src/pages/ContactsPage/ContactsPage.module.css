@@ -32,11 +32,12 @@
 @media (min-width: 768px) {
   .container {
     max-width: 1024px;
-    margin-top: 130px;
+    margin-top: 60px;
+    /* margin-top: 130px; */
   }
   .cartTitle {
     margin: 8px 0;
-    margin-top: 30px;
+    margin-top: 70px;
     font-size: 2em;
     font-weight: 700;
   }
@@ -45,13 +46,14 @@
 @media (min-width: 1023px) {
   .container {
     max-width: 1280px;
-    margin-top: 130px;
+    max-height: 900px;
+    margin-top: 60px;
   }
 }
 
 @media (min-width: 1279px) {
   .container {
     max-width: 1440px;
-    margin-top: 70px;
+    margin-top: 60px;
   }
 }

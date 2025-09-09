@@ -1,13 +1,13 @@
-.container {
+/* .container {
   width: 100%;
   max-width: 340px;
-  flex: 1; /* 🔹 розтягується */
+  flex: 1; 
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 8px;
   box-sizing: border-box;
-  overflow-y: auto; /* 🔹 скрол на мобілках */
+  overflow-y: auto; 
 }
 
 .list {
@@ -17,6 +17,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  list-style-type: none;
 }
 
 .item {
@@ -59,8 +60,111 @@
   }
   .list {
     gap: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
   .item {
-    width: calc((100% - 16px) / 5);
+    width: calc((100% - 16px) / 4);
+  }
+}
+@media screen and (min-width: 1700px) {
+  .container {
+    max-width: 1700px;
+  }
+  .list {
+    gap: 16px;
+  }
+  .item {
+    width: calc((100% - 16px) / 4);
+  }
+} */
+
+.container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  justify-content: center;
+}
+
+.item {
+  flex: 1 1 300px; /* мінімум 300px ширини */
+  max-width: 350px; /* але не більше */
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 1024px;
+  }
+  .list {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .item {
+    width: calc((100% - 8px) / 2);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+  .item {
+    width: calc((100% - 10px) / 3);
+  }
+  .list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+  .list {
+    justify-content: center;
+    gap: 16px;
+  }
+  .item {
+    flex: 0 1 calc(25% - 16px); /* 🔹 рівно 4 в ряд */
+    max-width: 330px;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .container {
+    max-width: 1700px;
+  }
+  .list {
+    justify-content: center;
+    gap: 20px;
+  }
+  .item {
+    flex: 0 1 calc(20% - 20px); /* 🔹 можна зробити 5 колонок */
+    max-width: 330px;
   }
 }
