@@ -1,6 +1,11 @@
 // contactsSlice.js (це окрема локаль - locale-slice для конактів)
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchContact, addContact, deleteContact } from "./operations";
+import {
+  fetchContact,
+  addContact,
+  deleteContact,
+  updateContact,
+} from "./operations";
 
 import { logOut } from "../auth/operations";
 
@@ -44,6 +49,21 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(addContact.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateContact.pending, state => {
+        state.loading = true;
+      })
+      .addCase(updateContact.fulfilled, (state, action) => {
+        const idx = state.items.findIndex(b => b._id === action.payload._id);
+        if (idx !== -1) {
+          state.items[idx] = { ...state.items[idx], ...action.payload };
+        }
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(updateContact.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

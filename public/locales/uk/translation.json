@@ -8,7 +8,8 @@
   },
   "register": {
     "titleRegistr": "Форма регістрації",
-    "titleSchedule": "Заплануй зустрічь"
+    "titleSchedule": "Заплануй зустрічь",
+    "buttonUpdateBooking": "Оновити бронювання"
   },
   "login": {
     "titleLogin": "ФОРМА ЛОГІНУ"
@@ -39,7 +40,10 @@
     "titleWelcom": "Якщо ви хочете забронювати зустрічь зарегеструйтесь або авторизуйтесь",
     "create": "Створити Аккаунт",
     "bookong": "Забронювати",
-    "bookongCancelled": "Відмінити"
+    "bookongUpdate": "Оновити",
+    "bookongCancelled": "Відмінити",
+    "titleUpdateContact": "Оновлення контакта",
+    "updatedButton": "Оновити"
   },
   "loader": {
     "shortTextMessage": "Текст має бути довшим за 3 символи"

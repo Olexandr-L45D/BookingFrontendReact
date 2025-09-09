@@ -108,7 +108,7 @@ export const cancelBooking = createAsyncThunk(
 
 export const updateBooking = createAsyncThunk(
   "booking/updateBooking",
-  async ({ id, date, time }, { getState, rejectWithValue }) => {
+  async ({ id, date, time, status }, { getState, rejectWithValue }) => {
     try {
       const token = getState().auth.token || localStorage.getItem("token");
       if (!token) return rejectWithValue("No token available");
@@ -119,13 +119,14 @@ export const updateBooking = createAsyncThunk(
       const { data } = await axios.patch(`/bookings/${id}/update`, {
         date,
         time,
+        status,
       });
 
       if (!data || !data.data) {
         return rejectWithValue("Invalid server response");
       }
-
-      return data.data; // 👈 оновлений об’єкт бронювання
+      // 👇 Повертаємо так, щоб Redux завжди працював з _id
+      return { ...data.data, _id: data.data._id || id };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
     }

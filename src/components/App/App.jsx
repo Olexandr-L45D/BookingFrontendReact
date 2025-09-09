@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense } from "react";
 import { useEffect } from "react";
-
+// UpdateContactPage
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const RegistrationPage = lazy(() =>
@@ -15,6 +15,10 @@ const CreateContactPage = lazy(() =>
 const ContactsPage = lazy(() =>
   import("../../pages/ContactsPage/ContactsPage")
 );
+const UpdateContactPage = lazy(() =>
+  import("../../pages/UpdateContactPage/UpdateContactPage")
+);
+
 const BookingPage = lazy(() => import("../../pages/BookingPage/BookingPage"));
 
 const AllReservationsPage = lazy(() =>
@@ -39,7 +43,7 @@ export default function App() {
     const token = localStorage.getItem("token");
     if (token) {
       setAuthHeader(token); // важливо: встановити хедер одразу
-      // можеш диспатчити refreshUser після встановлення
+      //  диспатчити refreshUser після встановлення
       dispatch(refreshUser());
     } else {
       // якщо токена немає — refreshUser не має запускатись
@@ -84,6 +88,15 @@ export default function App() {
             path="/contacts"
             element={
               <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
+          <Route
+            path="/updateContact"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<UpdateContactPage />}
+              />
             }
           />
           <Route

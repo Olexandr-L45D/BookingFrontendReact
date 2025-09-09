@@ -1,5 +1,6 @@
+/* UpdateContactForm.module.css */
 .container {
-  margin-top: 70px;
+  margin-top: 50px;
   width: 100%;
   max-width: 340px;
   height: 100%;
@@ -19,12 +20,23 @@
   .container {
     max-width: 370px;
     max-height: 850px;
+    margin-top: 70px;
+  }
+  .cartForm {
+    padding: 2px;
+    margin: 2px;
+    margin-top: 70px;
   }
 }
 /* 💻 планшети горизонтально / маленькі ноутбуки */
 @media (min-width: 768px) {
   .container {
     max-width: 1024px;
+    margin-top: 50px;
+  }
+  .cartForm {
+    padding: 2px;
+    margin: 2px;
     margin-top: 50px;
   }
 }

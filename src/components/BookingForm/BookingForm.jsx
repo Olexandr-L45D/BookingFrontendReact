@@ -39,9 +39,16 @@ export default function BookingForm() {
     }
 
     // Викликаємо thunk
-    dispatch(addReserve(payload));
-    actions.resetForm();
-    notify();
+    dispatch(addReserve(payload))
+      .unwrap()
+      .then(() => {
+        notify();
+        // Очищаємо форму
+        actions.resetForm();
+      })
+      .catch(err => {
+        toast.error(err);
+      });
   };
 
   return (

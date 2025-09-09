@@ -3,19 +3,28 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { useTranslation } from "react-i18next";
-// register - запит на БЕКенд який повертає обєкт з даннними для регістрації (name: " ",email, password)
-//  Ivan2@mail.com.ua,  Petrov@mail.com  autoComplete="off"
+import toast from "react-hot-toast";
+
 export default function RegistrationForm() {
   const dispatch = useDispatch();
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
   }
+  const notify = () => toast.success(t("successfully register !"));
 
   const handleSubmit = (values, actions) => {
     console.log(values);
-    dispatch(register(values));
-    actions.resetForm();
+    dispatch(register(values))
+      .unwrap()
+      .then(() => {
+        notify();
+        // Очищаємо форму
+        actions.resetForm();
+      })
+      .catch(err => {
+        toast.error(err);
+      });
   };
   return (
     <div className={css.item}>

@@ -1,12 +1,12 @@
-import css from "./ContactForm.module.css";
+import css from "./UpdateContactForm.module.css";
 import { Formik, Form, Field } from "formik";
 import { ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { updateContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-export default function ContactForm() {
+export default function UpdateContactForm() {
   const dispatch = useDispatch();
   const { t, ready } = useTranslation();
   if (!ready) {
@@ -17,13 +17,13 @@ export default function ContactForm() {
   const handleSubmit = (values, actions) => {
     // Обрізаємо пробіли з усіх полів
     const payload = {
-      name: values.name.trim(),
-      phoneNumber: values.phoneNumber.trim(),
-      email: values.email.trim(),
-      role: values.role.trim(),
+      contactId: values.contactId.trim() || "",
+      phoneNumber: values.phoneNumber.trim() || "",
+      email: values.email.trim() || "",
+      role: values.role.trim() || "",
     };
     // Викликаємо thunk
-    dispatch(addContact(payload))
+    dispatch(updateContact(payload))
       .unwrap()
       .then(() => {
         notify();
@@ -39,7 +39,7 @@ export default function ContactForm() {
     <div className={css.item}>
       <Formik
         initialValues={{
-          name: "",
+          contactId: "",
           phoneNumber: "",
           email: "",
           role: "",
@@ -48,14 +48,18 @@ export default function ContactForm() {
       >
         <Form>
           <div className={css.items}>
-            <label className={css.label}>{t("contacts.name")}</label>
+            <label className={css.label}>{"Contact Id"}</label>
             <Field
               className={css.inp}
               type="text"
-              name="name"
-              placeholder={t("contacts.namePlaceholder")}
+              name="contactId"
+              placeholder={"Enter Contact Id..."}
             />
-            <ErrorMessage className={css.messag} name="name" component="span" />
+            <ErrorMessage
+              className={css.messag}
+              name="contactId"
+              component="span"
+            />
           </div>
           <div className={css.items}>
             <label className={css.label}>{t("contacts.number")}</label>
@@ -100,7 +104,7 @@ export default function ContactForm() {
 
           <div className={css.btn}>
             <button onClick={notify} className={css.addContact} type="submit">
-              {t("contacts.added")}
+              {t("contacts.updatedButton")}
             </button>
             <Toaster />
           </div>
@@ -115,19 +119,4 @@ export default function ContactForm() {
 //   "phoneNumber": "222-33-115",
 //   "email": "Dima_Doe123@gmail.com",
 //   "role": "business"
-// }
-// // відповідь при створенні контакта
-// {
-//   "status": 201,
-//   "message": "Successfully created a contact!",
-//   "contact": {
-//     "name": "Dima Prod",
-//     "phoneNumber": "222-33-115",
-//     "email": "Dima_Doe123@gmail.com",
-//     "role": "business",
-//     "userId": "68bc381901e47c5f0665b865",
-//     "_id": "68bc6b9f2f071eae4ff81caa",
-//     "createdAt": "2025-09-06T17:13:03.377Z",
-//     "updatedAt": "2025-09-06T17:13:03.377Z"
-//   }
 // }

@@ -14,7 +14,7 @@
 .button {
   margin: 8px;
   color: black;
-  background-color: hsl(343, 89%, 50%);
+  background-color: hsl(299, 89%, 50%);
 }
 .button:focus {
   padding: 8px;

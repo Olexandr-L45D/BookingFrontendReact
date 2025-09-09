@@ -4,7 +4,7 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import { useTranslation } from "react-i18next";
-// import { selectIsLoading } from '../../redux/auth/selectors'
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -12,11 +12,19 @@ export default function LoginForm() {
   if (!ready) {
     return <div>Loading translations...</div>;
   }
-
+  const notify = () => toast.success(t("successfully login !")); // Викликаємо toast із перекладеним текстом
   const handleSubmit = (values, actions) => {
     console.log(values);
-    dispatch(logIn(values));
-    actions.resetForm();
+    dispatch(logIn(values))
+      .unwrap()
+      .then(() => {
+        notify();
+        // Очищаємо форму
+        actions.resetForm();
+      })
+      .catch(err => {
+        toast.error(err);
+      });
   };
   return (
     <div className={css.item}>

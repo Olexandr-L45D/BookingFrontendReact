@@ -16,11 +16,14 @@
 }
 
 .link {
+  margin-left: 2px;
+  margin-right: 2px;
   padding: 8px 10px;
   border-radius: 8px;
   text-decoration: none;
   color: black;
   font-weight: 500;
+  background-color: rgb(0, 187, 255);
 }
 
 .link:focus {
