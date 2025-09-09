@@ -10,10 +10,10 @@ export default function UpdateBookingPage() {
   }
   return (
     <main>
-      <div className={css.container}>
-        <h3 className={css.cartForm}>{t("register.buttonUpdateBooking")}</h3>
+      <section className={css.container}>
+        <h1 className={css.cartForm}>{t("register.buttonUpdateBooking")}</h1>
         <UpdateBookingForm />
-      </div>
+      </section>
     </main>
   );
 }

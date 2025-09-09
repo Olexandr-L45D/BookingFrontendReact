@@ -5,9 +5,11 @@ import { updateBooking } from "../../redux/booking/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function UpdateBookingForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // 👈 хук для редіректу
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
@@ -29,13 +31,14 @@ export default function UpdateBookingForm() {
         notify();
         // Очищаємо форму
         actions.resetForm();
+        navigate("/booking/me");
       })
       .catch(err => {
         toast.error(err);
       });
   };
   return (
-    <div className={css.item}>
+    <section className={css.item}>
       <Formik
         initialValues={{
           id: "",
@@ -96,7 +99,7 @@ export default function UpdateBookingForm() {
           </div>
         </Form>
       </Formik>
-    </div>
+    </section>
   );
 }
 

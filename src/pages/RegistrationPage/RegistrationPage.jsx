@@ -13,14 +13,12 @@ export default function RegistrationPage() {
   }
   return (
     <main>
-      <div className={css.container}>
-        <h3 className={css.cartForm}>{t("register.titleRegistr")}</h3>
+      <section className={css.container}>
+        <h1 className={css.cartForm}>{t("register.titleRegistr")}</h1>
         {isLoading ? <Loader /> : <RegistrationForm />}
-        {/* <RegistrationForm /> */}
-      </div>
+      </section>
     </main>
   );
 }
 
-// RegistrationForm BookingPage
-// export const typeList = ['client', 'business'];
+//Example Role =  ['client', 'business'];

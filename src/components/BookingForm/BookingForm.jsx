@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addReserve } from "../../redux/booking/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 // import { selectAllReservationsBooking } from "../../redux/booking/selectors";
 
 export default function BookingForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // 👈 хук для редіректу
   const bookings = useSelector(state => state.booking.items || []);
   const { t, ready } = useTranslation();
   if (!ready) {
@@ -45,6 +47,7 @@ export default function BookingForm() {
         notify();
         // Очищаємо форму
         actions.resetForm();
+        navigate("/booking/me");
       })
       .catch(err => {
         toast.error(err);
@@ -52,7 +55,7 @@ export default function BookingForm() {
   };
 
   return (
-    <div className={css.item}>
+    <section className={css.item}>
       <Formik
         initialValues={{
           businessId: "",
@@ -80,7 +83,7 @@ export default function BookingForm() {
             <label className={css.label}>Date</label>
             <Field
               className={css.inp}
-              type="date"
+              type="text"
               name="date"
               placeholder="Enter date format: 2025-09-07..."
             />
@@ -106,7 +109,7 @@ export default function BookingForm() {
           </div>
         </Form>
       </Formik>
-    </div>
+    </section>
   );
 }
 

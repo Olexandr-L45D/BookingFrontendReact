@@ -10,10 +10,10 @@ export default function BookingPage() {
   }
   return (
     <main>
-      <div className={css.container}>
-        <h3 className={css.cartForm}>{t("register.titleSchedule")}</h3>
+      <section className={css.container}>
+        <h1 className={css.cartForm}>{t("register.titleSchedule")}</h1>
         <BookingForm />
-      </div>
+      </section>
     </main>
   );
 }

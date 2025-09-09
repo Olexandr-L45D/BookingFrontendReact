@@ -2,9 +2,14 @@
   "navigation": {
     "home": "Home",
     "contacts": "Contacts",
+    "createContact": "Create Contact",
+    "updateContact": "Update Contact",
     "login": "Login",
     "register": "Register",
-    "titleContactbook": "Contactbook"
+    "titleContactbook": "Contactbook",
+    "updateReservation": "Update reservation",
+    "myReservations": "My reservations",
+    "reservation": "Reservation"
   },
   "register": {
     "titleRegistr": "RegistrationForm",

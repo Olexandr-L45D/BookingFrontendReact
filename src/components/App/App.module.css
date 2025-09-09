@@ -5,7 +5,12 @@
   padding: 2rem;
   text-align: center;
 }
-
+ul,
+ol {
+  list-style-type: none; /* вимикає маркери і цифри */
+  padding-left: 0; /* прибирає відступ зліва */
+  margin: 0; /* додатково можна прибрати зовнішній відступ */
+}
 .logo {
   height: 6em;
   padding: 1.5em;

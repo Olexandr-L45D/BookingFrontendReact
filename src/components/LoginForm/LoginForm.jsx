@@ -27,7 +27,7 @@ export default function LoginForm() {
       });
   };
   return (
-    <div className={css.item}>
+    <section className={css.item}>
       <Formik
         initialValues={{
           email: " ",
@@ -61,6 +61,6 @@ export default function LoginForm() {
           </div>
         </Form>
       </Formik>
-    </div>
+    </section>
   );
 }

@@ -13,7 +13,7 @@ export default function UserMenu() {
     return <div>Loading translations...</div>;
   }
   return (
-    <div className={css.wrapper}>
+    <section className={css.wrapper}>
       <p className={css.username}>{/* {t("auth.welcome")}, {user.name} */}</p>
       <button
         className={css.button}
@@ -22,6 +22,6 @@ export default function UserMenu() {
       >
         {t("auth.logout")}
       </button>
-    </div>
+    </section>
   );
 }

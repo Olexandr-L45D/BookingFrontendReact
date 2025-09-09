@@ -13,40 +13,17 @@ export const BookingNav = () => {
     return <div>Loading translations...{t("navigation.register")}</div>;
   }
   return (
-    <div className={css.blokLink}>
+    <section className={css.blokLink}>
       <NavLink className={newLinkClass} to="/booking">
-        {/* {t("navigation.register")} */}
-        Reservation
+        {t("navigation.reservation")}
       </NavLink>
       <NavLink className={newLinkClass} to="/booking/me">
-        {/* {t("navigation.login")} */}
-        My reservations
+        {t("navigation.myReservations")}
       </NavLink>
 
       <NavLink className={newLinkClass} to="/:id/update">
-        {/* {t("navigation.login")} */}
-        Update reservation
+        {t("navigation.updateReservation")}
       </NavLink>
-    </div>
+    </section>
   );
 };
-
-// routs in bekend
-
-// const bookingsRouter = Router();
-
-// bookingsRouter.use(authenticate);
-// bookingsRouter.post("/", createBooking);
-
-// // Отримати всі свої бронювання
-// bookingsRouter.get("/me", getMyBookings);
-
-// // Видалити бронювання
-// bookingsRouter.delete("/:id", deleteBooking);
-
-// // Відмінити бронювання
-// bookingsRouter.patch("/:id/cancel", cancelBooking);
-// // Змінити данні по бронюванню
-// bookingsRouter.patch("/:id/update", updateBooking);
-
-// export default bookingsRouter;

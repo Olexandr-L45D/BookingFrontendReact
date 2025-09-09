@@ -10,9 +10,9 @@ export default function CreateContactPage() {
   const isLoading = useSelector(selectLoading);
 
   return (
-    <div className={css.container}>
+    <main className={css.container}>
       <h1 className={css.cartTitle}>{t("contacts.titleContact")}</h1>
       {isLoading ? <Loader /> : <ContactForm />}
-    </div>
+    </main>
   );
 }

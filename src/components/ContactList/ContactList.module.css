@@ -34,7 +34,6 @@
     max-width: 1024px;
   }
   .list {
-    margin-top: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -49,9 +48,11 @@
 
 @media screen and (min-width: 1200px) {
   .container {
+    margin-top: -20px;
     max-width: 1200px;
   }
   .item {
+    /* margin-top: 10px; */
     width: calc((100% - 10px) / 3);
   }
 }
@@ -61,10 +62,10 @@
     max-width: 1440px;
   }
   .list {
-    gap: 16px;
+    gap: 10px;
   }
   .item {
-    width: calc((100% - 16px) / 4);
+    width: calc((100% - 10px) / 4);
   }
 }
 @media screen and (min-width: 1700px) {
@@ -72,10 +73,10 @@
     max-width: 1700px;
   }
   .list {
-    gap: 16px;
+    gap: 10px;
   }
   .item {
-    width: calc((100% - 16px) / 5);
+    width: calc((100% - 10px) / 5);
   }
 }
 

@@ -5,14 +5,16 @@ import { useDispatch } from "react-redux";
 import { updateContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function UpdateContactForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // 👈 хук для редіректу  navigate("/contacts"); // 👈 редірект на сторінку всіх контактів
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
   }
-  const notify = () => toast.success(t("contacts.addedNotification")); // Викликаємо toast із перекладеним текстом
+  const notify = () => toast.success("successfully updated !"); // Викликаємо toast із перекладеним текстом
 
   const handleSubmit = (values, actions) => {
     // Обрізаємо пробіли з усіх полів
@@ -29,6 +31,7 @@ export default function UpdateContactForm() {
         notify();
         // Очищаємо форму
         actions.resetForm();
+        navigate("/contacts");
       })
       .catch(err => {
         toast.error(err);
@@ -36,7 +39,7 @@ export default function UpdateContactForm() {
   };
 
   return (
-    <div className={css.item}>
+    <section className={css.item}>
       <Formik
         initialValues={{
           contactId: "",
@@ -110,7 +113,7 @@ export default function UpdateContactForm() {
           </div>
         </Form>
       </Formik>
-    </div>
+    </section>
   );
 }
 

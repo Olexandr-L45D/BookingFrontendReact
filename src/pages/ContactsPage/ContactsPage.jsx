@@ -23,14 +23,15 @@ export default function ContactsPage() {
   }, [dispatch, token]);
 
   return (
-    <section className={css.container}>
+    <main className={css.container}>
       <h1 className={css.cartTitle}>{t("contacts.titleCard")}</h1>
       <SearchBox />
       {isLoading ? <Loader /> : <ContactList />}
-    </section>
+    </main>
   );
 }
 
+// Example object contacts list=
 // {
 //   "status": 200,
 //   "message": "Successfully found contacts",

@@ -10,10 +10,10 @@ export default function UpdateContactPage() {
   }
   return (
     <main>
-      <div className={css.container}>
-        <h3 className={css.cartForm}>{t("contacts.titleUpdateContact")}</h3>
+      <section className={css.container}>
+        <h1 className={css.cartForm}>{t("contacts.titleUpdateContact")}</h1>
         <UpdateContactForm />
-      </div>
+      </section>
     </main>
   );
 }

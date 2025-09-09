@@ -13,7 +13,7 @@ export const AppBar = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { i18n } = useTranslation(); // Додано хук
-  // Функція для зміни мови
+  // Функція для зміни мови в файлі  = i18n.js
   // const changeLanguage = language => {
   //   i18n.changeLanguage(language);
   // };
@@ -25,9 +25,9 @@ export const AppBar = () => {
   return (
     <header className={css.header}>
       <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
       {isLoggedIn && <BookingNav />}
-      {/* {isLoggedIn ? <UserMenu /> : <BookingNav />} */}
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+
       <div className={css.languageSwitcher}>
         <button onClick={() => changeLanguage("en")}>EN</button>
         <button onClick={() => changeLanguage("uk")}>UA</button>
@@ -36,15 +36,8 @@ export const AppBar = () => {
   );
 };
 
-//  Додали переклад даних із бекенду при отриманні їх у Redux.
-// Використали Google Translate API для автоматичного перекладу.
 //  Додали Redux Slice для мови, щоб контролювати поточну мову.
 //  Додали перезапит контактів при зміні мови.
 //  Уникнули зайвих запитів — якщо мова en, переклад не виконується.
 
-// Тепер ваш додаток працюватиме так:
-
-// Спочатку контакти приходять англійською.
-// При зміні мови в Redux оновлюється fetchContact.
-// Контакти автоматично перекладаються перед збереженням у Redux.
 // Всі компоненти отримують вже перекладені дані.

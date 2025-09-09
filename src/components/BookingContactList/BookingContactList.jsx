@@ -8,7 +8,7 @@ export default function BookingContactList() {
   const items = useSelector(selectAllReservationsBooking);
 
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <ul className={css.list}>
         {items.map(contact => (
           <li className={css.item} key={contact.id}>
@@ -16,6 +16,6 @@ export default function BookingContactList() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

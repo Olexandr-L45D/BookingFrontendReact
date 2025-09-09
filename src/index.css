@@ -6,7 +6,6 @@
   /* color-scheme: light dark; */
   color: rgba(255, 255, 255, 0.87);
 
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -27,13 +26,19 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  /* width: 100%; */
   min-height: 100vh;
 }
 
-h1 {
+h1,
+h2 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+ul,
+ol {
+  list-style-type: none; /* вимикає маркери і цифри */
+  padding-left: 0; /* прибирає відступ зліва */
+  margin: 0; /* додатково можна прибрати зовнішній відступ */
 }
 
 button {

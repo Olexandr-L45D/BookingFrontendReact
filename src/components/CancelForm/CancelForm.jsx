@@ -31,7 +31,7 @@ export default function CancelForm() {
   return (
     <>
       <h1 className={css.cartForm}>Cancellation Form</h1>
-      <div className={css.item}>
+      <section className={css.item}>
         <Formik
           initialValues={{
             id: " ",
@@ -77,7 +77,7 @@ export default function CancelForm() {
             </div>
           </Form>
         </Formik>
-      </div>
+      </section>
     </>
   );
 }

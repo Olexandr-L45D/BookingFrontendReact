@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // 👈 хук для редіректу  navigate("/contacts");
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
@@ -29,6 +31,7 @@ export default function ContactForm() {
         notify();
         // Очищаємо форму
         actions.resetForm();
+        navigate("/contacts");
       })
       .catch(err => {
         toast.error(err);
@@ -36,7 +39,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className={css.item}>
+    <section className={css.item}>
       <Formik
         initialValues={{
           name: "",
@@ -106,7 +109,7 @@ export default function ContactForm() {
           </div>
         </Form>
       </Formik>
-    </div>
+    </section>
   );
 }
 

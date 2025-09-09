@@ -10,7 +10,7 @@ export default function ContactList() {
   }
 
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <ul className={css.list}>
         {items.map(contact => (
           <li className={css.item} key={contact.id}>
@@ -18,6 +18,6 @@ export default function ContactList() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

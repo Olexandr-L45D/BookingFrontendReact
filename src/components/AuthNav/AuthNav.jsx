@@ -13,13 +13,13 @@ export const AuthNav = () => {
     return <div>Loading translations...</div>;
   }
   return (
-    <div className={css.blokLink}>
+    <section className={css.blokLink}>
       <NavLink className={newLinkClass} to="/register">
         {t("navigation.register")}
       </NavLink>
       <NavLink className={newLinkClass} to="/login">
         {t("navigation.login")}
       </NavLink>
-    </div>
+    </section>
   );
 };

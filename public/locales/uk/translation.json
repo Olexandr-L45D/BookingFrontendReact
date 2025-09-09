@@ -2,12 +2,17 @@
   "navigation": {
     "home": "Головна",
     "contacts": "Контакти",
+    "createContact": "Створити контакт",
+    "updateContact": "Оновити контакт",
     "login": "Увійти",
     "register": "Реєстрація",
-    "titleContactbook": "Книга контактів"
+    "titleContactbook": "КНИГА КОНТАКТІВ",
+    "updateReservation": "Оновити бронювання",
+    "myReservations": "Мої бронювання",
+    "reservation": "Забронювати"
   },
   "register": {
-    "titleRegistr": "Форма регістрації",
+    "titleRegistr": "ФОРМА РЕГІСТРАЦІЇ",
     "titleSchedule": "Заплануй зустрічь",
     "buttonUpdateBooking": "Оновити бронювання"
   },

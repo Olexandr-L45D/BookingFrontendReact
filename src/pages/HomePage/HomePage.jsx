@@ -8,15 +8,15 @@ export default function HomePage() {
     return <div>Loading translations...</div>;
   }
   return (
-    <div className={css.container}>
-      <div className={css.card}>
+    <main className={css.container}>
+      <section className={css.card}>
         <h1 className={css.cartTitle}>
           {t("auth.titleContactbook")}
           <FcBusinessman className={css.cartIcon} />
         </h1>
         <h2 className={css.cartText}>{t("contacts.titleWelcom")}</h2>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 

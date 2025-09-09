@@ -23,34 +23,34 @@ export default function Contact({ contact }) {
   };
 
   return (
-    <div className={css.item}>
-      <div className={css.itemText}>
-        <p className={css.text}>
+    <section className={css.item}>
+      <ul className={css.itemText}>
+        <li className={css.text}>
           <BsFillPersonFill className={css.iconReact} />
           {t("contacts.labelName")}: {contact.name}
-        </p>
-        <p className={css.text}>
+        </li>
+        <li className={css.text}>
           <AiFillPhone className={css.iconReact} />
           {t("contacts.labelPhone")}: {contact.phoneNumber}
-        </p>
-        <p className={css.text}>
+        </li>
+        <li className={css.text}>
           <FcAddressBook className={css.iconReact} />
           Email: {contact.email}
-        </p>
-        <p className={css.text}>
+        </li>
+        <li className={css.text}>
           <AiOutlineHome className={css.iconReact} />
           Role: {contact.role}
-        </p>
-        <p className={css.text}>
+        </li>
+        <li className={css.text}>
           <FcAbout className={css.iconReact} />
           Id: {contact._id}
-        </p>
-      </div>
+        </li>
+      </ul>
       <button className={css.btn} onClick={handleDelete}>
         {t("contacts.delete")}
       </button>
       <Toaster />
-    </div>
+    </section>
   );
 }
 

@@ -18,7 +18,7 @@ export const Navigation = () => {
     return <div>Loading translations...</div>;
   }
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <nav className={css.nav}>
         <NavLink to="/" className={newLinkClass}>
           {t("navigation.home")}
@@ -31,16 +31,16 @@ export const Navigation = () => {
         )}
         {isLoggedIn && (
           <NavLink to="/createContact" className={newLinkClass}>
-            Create Contact
+            {t("navigation.createContact")}
           </NavLink>
         )}
         {isLoggedIn && (
           <NavLink to="/updateContact" className={newLinkClass}>
-            Update Contact
+            {t("navigation.updateContact")}
           </NavLink>
         )}
       </nav>
-    </div>
+    </section>
   );
 };
 

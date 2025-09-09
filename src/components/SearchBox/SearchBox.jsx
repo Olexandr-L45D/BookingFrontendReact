@@ -15,10 +15,10 @@ export default function SearchBox() {
   const handleFilterChange = e => dispatch(setChangeFilter(e.target.value));
 
   return (
-    <div className={css.item}>
+    <section className={css.item}>
       <h5 className={css.paragraf}>{t("auth.finde")}</h5>
       <input type="text" value={filter} onChange={handleFilterChange} />
-    </div>
+    </section>
   );
 }
 
