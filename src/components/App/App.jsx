@@ -130,3 +130,34 @@ export default function App() {
     </Layout>
   );
 }
+
+//
+//
+//
+//
+//
+//при потребі показати при першому завантаженні чи при підвантаженнях рекламний банер чи короткий відео ролик додаю в
+// <Suspense fallback={ шматок JSX виразу
+//    <video autoPlay muted
+// <Suspense
+//   fallback={
+//     <div className="flex items-center justify-center h-screen bg-black">
+//       <video autoPlay muted loop className="w-full h-full object-cover">
+//         <source src="/ads/short-ad.mp4" type="video/mp4" />
+//       </video>
+//     </div>
+//   }
+// >
+//   <Routes>{/* маршрути */}</Routes>
+// </Suspense>;
+// <img src="/promo.png"
+// <Suspense
+//   fallback={
+//     <div className="flex flex-col items-center justify-center h-screen">
+//       <img src="/promo.png" alt="Promo" className="w-64 h-auto" />
+//       <p className="mt-4 text-lg">Завантажуємо сторінку...</p>
+//     </div>
+//   }
+// >
+//   <Routes>{/* твої маршрути */}</Routes>
+// </Suspense>;
