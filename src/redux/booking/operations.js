@@ -8,7 +8,7 @@ axios.defaults.baseURL = "https://bookingbackendnode.onrender.com";
 // ---------------------- ADD BOOKING = addResere ----------------------
 export const addReserve = createAsyncThunk(
   "booking/addReserve",
-  async ({ businessId, date, time }, thunkAPI) => {
+  async ({ businessId, date, time, endTime }, thunkAPI) => {
     try {
       // ✅ беремо токен з Redux або localStorage
       const state = thunkAPI.getState();
@@ -23,6 +23,7 @@ export const addReserve = createAsyncThunk(
         businessId,
         date,
         time,
+        endTime,
       });
 
       // ⚠️ припускаю, що бекенд повертає так:
@@ -108,7 +109,10 @@ export const cancelBooking = createAsyncThunk(
 
 export const updateBooking = createAsyncThunk(
   "booking/updateBooking",
-  async ({ id, date, time, status }, { getState, rejectWithValue }) => {
+  async (
+    { id, date, time, endTime, status },
+    { getState, rejectWithValue }
+  ) => {
     try {
       const token = getState().auth.token || localStorage.getItem("token");
       if (!token) return rejectWithValue("No token available");
@@ -119,6 +123,7 @@ export const updateBooking = createAsyncThunk(
       const { data } = await axios.patch(`/bookings/${id}/update`, {
         date,
         time,
+        endTime,
         status,
       });
 
