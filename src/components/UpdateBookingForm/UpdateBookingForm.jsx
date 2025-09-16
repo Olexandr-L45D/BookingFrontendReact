@@ -5,11 +5,13 @@ import { updateBooking } from "../../redux/booking/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateBookingForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // 👈 хук для редіректу
+  // const { id } = useParams(); // 👈 дістаємо айді з URL
+  const { id } = useParams();
+  const navigate = useNavigate(); // 👈 хук для редіректу на головну сторінку бронюваннь
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
@@ -19,7 +21,8 @@ export default function UpdateBookingForm() {
   const handleSubmit = (values, actions) => {
     // Обрізаємо пробіли з усіх полів
     const payload = {
-      id: values.id.trim() || "",
+      // id: values.id.trim() || "",
+      id,
       date: values.date.trim() || "",
       time: values.time.trim() || "",
       status: values.status.trim() || "",
@@ -31,7 +34,7 @@ export default function UpdateBookingForm() {
         notify();
         // Очищаємо форму
         actions.resetForm();
-        navigate("/booking/me");
+        navigate("/booking/me"); // редірект на головну сторінку всих бронюваннь
       })
       .catch(err => {
         toast.error(err);
@@ -41,7 +44,7 @@ export default function UpdateBookingForm() {
     <section className={css.item}>
       <Formik
         initialValues={{
-          id: "",
+          // id: "",
           date: "",
           time: "",
           status: "",
@@ -49,7 +52,7 @@ export default function UpdateBookingForm() {
         onSubmit={handleSubmit}
       >
         <Form>
-          <div className={css.items}>
+          {/* <div className={css.items}>
             <label className={css.label}>Booking Id</label>
             <Field
               className={css.inp}
@@ -58,7 +61,7 @@ export default function UpdateBookingForm() {
               placeholder="Enter booking id..."
             />
             <ErrorMessage className={css.messag} name="id" component="span" />
-          </div>
+          </div> */}
           <div className={css.items}>
             <label className={css.label}>Date</label>
             <Field
@@ -82,13 +85,19 @@ export default function UpdateBookingForm() {
           </div>
           <div className={css.items}>
             <label className={css.label}>Status</label>
-            <Field
-              className={css.inp}
-              type="text"
+            <Field className={css.select} as="select" name="status">
+              <option value="" disabled>
+                -- Select status --
+              </option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="cancelled">Cancelled</option>
+            </Field>
+            <ErrorMessage
+              className={css.messag}
               name="status"
-              placeholder="Example: confirmed or cancelled ..."
+              component="span"
             />
-            <ErrorMessage className={css.messag} name="date" component="span" />
           </div>
 
           <div className={css.btn}>
@@ -116,3 +125,9 @@ export default function UpdateBookingForm() {
 //     "status": "pending"
 //   }
 // }
+
+// status: {
+//       type: String,
+//       enum: ['pending', 'confirmed', 'cancelled'],
+//       default: 'pending',
+//     },

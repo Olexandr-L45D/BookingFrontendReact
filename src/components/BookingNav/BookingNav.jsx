@@ -20,10 +20,6 @@ export const BookingNav = () => {
       <NavLink className={newLinkClass} to="/booking/me">
         {t("navigation.myReservations")}
       </NavLink>
-
-      <NavLink className={newLinkClass} to="/:id/update">
-        {t("navigation.updateReservation")}
-      </NavLink>
     </section>
   );
 };

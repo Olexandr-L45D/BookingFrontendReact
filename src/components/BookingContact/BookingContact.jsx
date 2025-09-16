@@ -1,4 +1,4 @@
-// BookingContact
+// BookingContact це картка бронювання з початковими данними
 import css from "./BookingContact.module.css";
 import { FcAlarmClock } from "react-icons/fc";
 import { FcVip } from "react-icons/fc";
@@ -7,9 +7,11 @@ import { useDispatch } from "react-redux";
 import { deleteBooking } from "../../redux/booking/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function BookingContact({ contact }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // 👈 хук для редіректу на форму редагування цього бронювання
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
@@ -17,8 +19,12 @@ export default function BookingContact({ contact }) {
   const notify = () => toast.success("reservation deleted"); // Викликаємо тост із перекладеним текстом
 
   const handleDelete = () => {
-    dispatch(deleteBooking(contact._id)); // Видаляємо контакт
+    dispatch(deleteBooking(contact._id)); // Видаляємо бронювання
     notify(); // Показуємо повідомлення
+  };
+
+  const handleUpdate = () => {
+    navigate(`/${contact._id}/update`);
   };
 
   return (
@@ -41,9 +47,14 @@ export default function BookingContact({ contact }) {
           </li>
           <li className={css.text}>Status: {contact.status}</li>
         </ul>
-        <button className={css.btn} onClick={handleDelete}>
-          {t("contacts.delete")}
-        </button>
+        <div className={css.btnBlock}>
+          <button className={css.btn} onClick={handleUpdate}>
+            Update
+          </button>
+          <button className={css.btn} onClick={handleDelete}>
+            {t("contacts.delete")}
+          </button>
+        </div>
       </section>
       <Toaster />
     </section>

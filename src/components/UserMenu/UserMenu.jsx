@@ -14,7 +14,6 @@ export default function UserMenu() {
   }
   return (
     <section className={css.wrapper}>
-      <p className={css.username}>{/* {t("auth.welcome")}, {user.name} */}</p>
       <button
         className={css.button}
         onClick={() => dispatch(logOut())}
@@ -25,3 +24,7 @@ export default function UserMenu() {
     </section>
   );
 }
+// якщо хочу відобразити імя авторизованого юзера
+//  <p className={css.username}>
+//    {t("auth.welcome")}, {user.name}
+//  </p>;

@@ -43,17 +43,3 @@ export const Navigation = () => {
     </section>
   );
 };
-
-// замінив текст на посилання до файлу з перекладом  {/* Home */} та {/* Contacts */}
-// Aleksandr
-// Aleksandr @gmail.com.ua
-// Alek12345
-
-// Navigation (тепер він в AppBar і розділив його на 2 компоненти UsMenu and AutNav які далі здійснюють навігацію по сайту між сторінками (сторінки в pages))
-
-//  <NavLink to="/register" className={newLinkClass}>
-//                 Register
-//             </NavLink>
-//             <NavLink to="/login" className={newLinkClass}>
-//                 Log In
-//             </NavLink>
