@@ -91,7 +91,7 @@ export default function App() {
             }
           />
           <Route
-            path="/updateContact"
+            path="/:id/updateContact"
             element={
               <PrivateRoute
                 redirectTo="/login"

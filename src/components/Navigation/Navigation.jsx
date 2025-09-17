@@ -34,11 +34,6 @@ export const Navigation = () => {
             {t("navigation.createContact")}
           </NavLink>
         )}
-        {isLoggedIn && (
-          <NavLink to="/updateContact" className={newLinkClass}>
-            {t("navigation.updateContact")}
-          </NavLink>
-        )}
       </nav>
     </section>
   );

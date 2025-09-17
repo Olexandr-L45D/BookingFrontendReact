@@ -17,19 +17,3 @@ export default function BookingPage() {
     </main>
   );
 }
-
-//  BookingPage
-// const bookingSchema = new Schema(
-//   {
-//     clientId: { type: String, requirerd: true },
-//     businessId: { type: String, requirerd: true },
-//     date: { type: String, requirerd: true },
-//     time: { type: String, requirerd: true },
-//     status: {
-//       type: String,
-//       enum: ["pending", "confirmed", "cancelled"],
-//       default: "pending",
-//     },
-//   },
-//   { timestamps: true }
-// );

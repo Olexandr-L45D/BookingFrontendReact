@@ -45,13 +45,14 @@ export default function BookingContact({ contact }) {
             <FcAlarmClock className={css.iconReact} />
             Time: {contact.time}
           </li>
+          <li className={css.text}>End Time: {contact.endTime}</li>
           <li className={css.text}>Status: {contact.status}</li>
         </ul>
         <div className={css.btnBlock}>
           <button className={css.btn} onClick={handleUpdate}>
             Update
           </button>
-          <button className={css.btn} onClick={handleDelete}>
+          <button className={css.btnDell} onClick={handleDelete}>
             {t("contacts.delete")}
           </button>
         </div>

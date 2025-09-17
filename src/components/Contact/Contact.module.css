@@ -54,9 +54,10 @@
 
 .btn {
   padding: 3px;
-  margin: 2px;
+  margin-right: 5px;
   margin-left: 12px;
-  margin-top: 90px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: auto;
   width: 80px;
   text-align: center;
@@ -66,10 +67,34 @@
   border-color: black;
   border-radius: 5px;
 }
+.btnDell {
+  padding: 3px;
+  margin-right: 5px;
+  margin-left: 12px;
+  margin-top: 60px;
+  margin-bottom: 25px;
+  height: auto;
+  width: 80px;
+  text-align: center;
+  align-items: center;
+  color: rgb(14, 15, 15);
+  border: 1px solid black;
+  border-color: black;
+  border-radius: 5px;
+  background-color: crimson;
+}
 .iconReact {
   margin-right: 4px;
   height: auto;
   width: 25px;
   text-align: center;
   align-items: center;
+}
+.btnBlock {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }

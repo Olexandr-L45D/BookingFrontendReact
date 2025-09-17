@@ -8,9 +8,11 @@ import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function Contact({ contact }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // 👈 хук для редіректу на форму редагування
   const { t, ready } = useTranslation();
   if (!ready) {
     return <div>Loading translations...</div>;
@@ -20,6 +22,9 @@ export default function Contact({ contact }) {
   const handleDelete = () => {
     dispatch(deleteContact(contact._id)); // Видаляємо контакт
     notify(); // Показуємо повідомлення
+  };
+  const handleUpdate = () => {
+    navigate(`/${contact._id}/updateContact`);
   };
 
   return (
@@ -46,23 +51,28 @@ export default function Contact({ contact }) {
           Id: {contact._id}
         </li>
       </ul>
-      <button className={css.btn} onClick={handleDelete}>
-        {t("contacts.delete")}
-      </button>
+      <div className={css.btnBlock}>
+        <button className={css.btn} onClick={handleUpdate}>
+          Update
+        </button>
+        <button className={css.btnDell} onClick={handleDelete}>
+          {t("contacts.delete")}
+        </button>
+      </div>
       <Toaster />
     </section>
   );
 }
 
-// Delete міняю на динамічне значення для перекладу
+//
+//
+//
 // const MyComponent = () => {
 //     // 2. Отримуємо посилання на функцію відправки екшенів
 //     const dispatch = useDispatch();
 //     // 3. Функція селектор стану (належить слайсу тому що отримує частинку слайсу)
 //     const items = useSelector(deleteContact);
 // };
-
-// export default function Contact({ obj: { id, name, number }, onDelete }) - old Exemple!
 
 // {
 //   "name": "Dima Prod",
